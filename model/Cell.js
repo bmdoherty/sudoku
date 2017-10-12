@@ -75,3 +75,5 @@ class Cell {
         return new Set( r.concat(c).concat(s) )
     }
 }
+
+module.exports = {Cell}

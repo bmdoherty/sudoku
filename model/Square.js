@@ -1,19 +1,15 @@
 "use strict"
 
+import {House} from './House'
+import {isRow} from './Row'
+import {isColumn} from './Column'
+
 class Square extends House{
     constructor(id, cells, grid) {
         super(id, cells, grid);
         this.type = 'square'
         return this
     }  
-
-    isSquare(cells) {
-        if(!cells.length){
-            return false
-        }
-
-        return cells.every( (v,i,a) => v.squareID === a[0].squareID)
-    }
 
     get lockedCandidates() {
 
@@ -22,7 +18,7 @@ class Square extends House{
             
             if( possibleCells.length > 1 ){
 
-                if(this.isRow(possibleCells) ){ 
+                if(isRow(possibleCells) ){ 
                     let rowID = possibleCells[0].rowID 
                     let total = this.grid.row[rowID].cells.filter( v => v.possibilities.has(digit))
 
@@ -33,7 +29,7 @@ class Square extends House{
                     }
                 }   
            
-                if(this.isColumn(possibleCells)){   
+                if(isColumn(possibleCells)){   
                     let columnID = possibleCells[0].columnID      
                     let total = this.grid.column[columnID].cells.filter( v => v.possibilities.has(digit))
                     
@@ -50,3 +46,13 @@ class Square extends House{
     } 
 
 }
+
+export function isSquare(cells) {
+    if(!cells.length){
+        return false
+    }
+
+    return cells.every( (v,i,a) => v.squareID === a[0].squareID)
+}
+
+module.exports = {Square, isSquare}

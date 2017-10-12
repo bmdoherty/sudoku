@@ -1,35 +1,41 @@
 "use strict"
 
+import {Cell} from './Cell'
+import {Row} from './Row'
+import {Column} from './Column'
+import {Square} from './Square'
+
 class Grid {
-    constructor(title, text) {
-        this.title = title;
-        //this.text = text;
-        this.rowText = text.split(/\n/).filter( v => v.length > 0)
-        this.row = []
-        for(let i=0; i<this.rowText.length; i++){
-            this.row[i] = this.rowText[i].split('').map(Number)
-        }
-
-        // refactor
-        this.cells = []
-        let fixed = []
-        for(let r=0; r<this.row.length; r++){
-            for(let c=0; c<this.row[r].length; c++){
-                fixed[ r * 9 + c  ] = this.row[r][c]
-                this.cells.push( new Cell(this, r, c, this.row[r][c]) )
-
-            }
-        }
-
+    constructor(text) {
+        this.cells = this.textToCells(text)
         this.square = []
         this.row = []   
-        this.column = []                
+        this.column = []   
+
         for(let i=0; i<9; i++){
             this.row.push( new Row(i, this.getRow(i), this))
             this.column.push( new Column(i, this.getColumn(i), this))
             this.square.push( new Square(i, this.getSquare(i), this))
         }
     };
+
+    textToCells(text) {
+        let cells = []
+        let rows = text.split(/\n/).filter( v => v.length > 0)
+        let digitArray = []
+
+        for(let i=0; i<rows.length; i++){
+            digitArray[i] = rows[i].split('').map(Number)
+        }
+
+        for(let r=0; r<digitArray.length; r++){
+            for(let c=0; c<digitArray[r].length; c++){
+                cells.push( new Cell(this, r, c, digitArray[r][c]) )
+            }
+        }
+
+        return cells  
+    }  
 
     getSquare(id) {
         return this.cells.filter( v => v.squareID == id)  
@@ -437,140 +443,4 @@ class Grid {
 }
 
 
-
-const processResponse = (response) => {
-    let processedText = response
-    .split(/(Grid\s\d{2})/)
-    .filter( v => v.length > 0)
-    .map( (v,i,a) => {
-        if(i % 2 == 0){
-            return {'title':a[i], 'text':a[i+1]}
-        }
-        return undefined
-    })
-    .filter( v => v != undefined)
-
-    return processedText 
-}
-
-
-async function f(n) {
-    console.time('timer')
-    let response = await getGrids()
-
-    // swordfish & XY Wing
-    //let response = 'Grid 01\n195367248\n078050369\n306098157\n003780590\n709005006\n584906710\n832549671\n907013025\n051072900'
-
-    // jellyfish
-    //let response = 'Grid 01\n204103580\n000020341\n103485600\n732954168\n005010900\n619832400\n001508200\n300240000\n026300004'
-    
-    //let response = 'Grid 01\n200000003\n080030050\n003402100\n001205400\n000090000\n009308600\n002506900\n090020070\n400000001'   
-    //let response = 'Grid 01\n000090000\n504601000\n000834000\n000000910\n000000208\n319000450\n870100040\n005300000\n206400070'
-    
-    // this week mag
-    //let response = 'Grid 01\n013000000\n000390501\n000004090\n000000000\n782503910\n196702380\n000007050\n048000000\n000830609'    
-    
-    //console.log(response)
-    let grids = processResponse(response).map( ({title, text}) => new Grid(title, text))   
-    //grids = grids.slice(n,n+1)
-
-    //grids = grids.map( ({title, text}) => new Grid(title, text)) 
-    
-    grids = grids.map( g => g.solve())
-    //grids = grids.map( g => g.solve())
-
-    console.timeEnd('timer')
-    return  grids.map( g => g.row[0].cells.map( v => v.digit).slice(0,3).join('') ).map(Number).reduce( (s,v) => s = s + v ) 
-}
-
-module.exports = {f}
-
-f(6)
-
-
-
-    // backtrack(triplet, value) {
-    //     let r = Math.floor(triplet/9)
-    //     let c = triplet % 9
-    //     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
-    //     let ss = (Math.floor(r % 3) * 3) + c % 3
-      
-    //     this.row[r][c] = value
-    //     this.column[c][r] = value
-    //     this.square[s][ss] = value
-    //     //console.log(`backtrack: t: ${triplet} r: ${r} c:${c} value: ${value}`)
-    // };    
-
-    // rollback(triplet, value) {
-    //     let r = Math.floor(triplet/9)
-    //     let c = triplet % 9
-    //     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
-    //     let ss = (Math.floor(r % 3) * 3) + c % 3
-      
-    //     this.row[r][c] = value
-    //     this.column[c][r] = value
-    //     this.square[s][ss] = value
-    //     //console.log(`rollback: t: ${triplet} r: ${r} c:${c} value: ${value}`)
-    // };  
-
-    // const solve = (grid, deducedArray=[]) => {    
-//     // deduce
-//     let deduced = deduce(grid)
-    
-//     while ( deduced !== undefined ){
-//         // if(deduced.t == 54 && deduced.value==8){
-//         //     console.log( `deduce fill t: ${deduced.t} v: ${deduced.value}  r: ${deduced.r}` )
-//         //     console.log(deduced.row)
-//         //     console.log(deduced.column)
-//         //     console.log(deduced.square)
-//         // }  
-//         // if(deduced.t == 65 && deduced.value==8){
-//         //     console.log( `deduce fill t: ${deduced.t} v: ${deduced.value}  r: ${deduced.r}` )
-//         //     console.log(deduced.row)
-//         //     console.log(deduced.column)
-//         //     console.log(deduced.square)
-//         // }                    
-//         deducedArray.push(deduced.t)
-//         grid.deducefill(deduced.t, deduced.value)
-//         deduced = deduce(grid)
-        
-//     }
-//     //console.log(deducedArray)
-//     //return grid
-//     if( isSolved(grid) ){
-//         console.log( grid.title + ': is solved')
-//         return grid
-//     }   
-
-
-//     //console.log( grid.row[0] )  
-
-//     //guess
-//     let {r,c} = findUnassigned(grid)
-//     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
-//     let t = (r * 9) + c      
-
-//     let row = grid.row[r]
-//     let column = grid.column[c]
-//     let square = grid.square[s]
-
-//     //let unused = filterTriplet(row, column, square)
-
-//     for(let i=1; i<=9; i++){
-//         let isSafe = filterTriplet(row, column, square).has(i)    
-//         if(isSafe){              
-//             grid.guessfill(t, i)
-//             if( solve(grid, deducedArray) ){
-//                 return grid
-//             }   
-//             grid.backtrack(t, 0) 
-           
-//             while(deducedArray.length){
-//                 let test = deducedArray.pop()
-//                 grid.rollback(test, 0) 
-//             }
-//         }    
-//     }
-
-//     return false
-// }
+module.exports = {Grid}

@@ -167,5 +167,8 @@ class House {
         }    
 
         return links
-    }
+    }   
 }
+
+
+module.exports = {House}
