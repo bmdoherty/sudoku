@@ -49,7 +49,7 @@ it('invalid for same digit in column', () => {
     expect( v.message ).toEqual( 'Grid contains duplicates in column 1' )
 });
 
-it('invalid for same digit in column', () => {
+it('invalid for same digit in square', () => {
     let text = '100000003\n013004569\n060078000\n000030006\n004500290\n006000014\n000020001\n070085000\n500403800'
     let v = isValid(text)
     
