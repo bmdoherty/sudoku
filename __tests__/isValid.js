@@ -2,7 +2,7 @@ const {Grid} = require('../model/Grid');
 const {isValid} = require('../model/isValid')
 
 it('invalid for 2 rows', () => {
-    let text = 'abcdefghk\nabcdefghk'
+    let text = 'abcdefghk\nabcdefghk' 
     let v = isValid(text)
 
     expect( v.isValid ).toEqual( false )
@@ -65,7 +65,7 @@ it('valid for ok grid', () => {
     expect( v.message ).toEqual( 'Grid can be solved' )
 });
 
-it('very hard', () => {
+it('valid for very hard', () => {
     let text = '800000000\n003600000\n070090200\n050007000\n000045700\n000100030\n001000068\n008500010\n090000400'
     let v = isValid(text)
     
