@@ -1,4 +1,12 @@
-const {Grid} = require('./model/Grid'); 
+const {Grid} = require('../model/Grid'); 
+
+it('Guardian hard Oct 12', () => {
+    let text = '000000003\n089000060\n060078000\n000030006\n004500290\n006000014\n000020001\n070085000\n500403800'
+    let grid = new Grid(text).solve()
+    let firstRow = grid.row[0].cells.map( v => v.digit)
+
+    expect( firstRow ).toEqual( [4, 2, 7, 6, 5, 1, 9, 8, 3] ); 
+});
 
 it('swordfish & XY Wing', () => {
     let text = '195367248\n078050369\n306098157\n003780590\n709005006\n584906710\n832549671\n907013025\n051072900'
@@ -103,4 +111,4 @@ it('euler 50: ', async () => {
     let firstRow = grid.row[0].cells.map( v => v.digit)
 
     expect( firstRow ).toEqual( [ 3, 5, 1, 2, 8, 6, 4, 9, 7 ] ); 
-});
+}); 

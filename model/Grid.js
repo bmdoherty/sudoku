@@ -48,10 +48,6 @@ class Grid {
     getColumn(id) {
         return this.cells.filter( v => v.columnID == id)  
     }      
-
-    get nakedTriplets() {
-        return this.naked.filter( v => v.length == 3)
-    }
     
     getNextStep(technique) {   
         let nextStep 
@@ -219,6 +215,30 @@ class Grid {
         return this.XYChain(3)
     }  
 
+    get XYChain4() {
+        return this.XYChain(4)
+    }  
+
+    get XYChain5() {
+        return this.XYChain(5)
+    } 
+
+    get XYChain6() {
+        return this.XYChain(6)
+    } 
+
+    get XYChain7() {
+        return this.XYChain(7)
+    } 
+
+    get XYChain8() {
+        return this.XYChain(8)
+    }     
+
+    get XYChain9() {
+        return this.XYChain(9)
+    }   
+
     get XWings() {
         return this.fish(2)
     }      
@@ -338,7 +358,9 @@ class Grid {
             'nakedSingles', 
             'nakedDoubles', 
             'lockedCandidates',
-            'hiddenDoubles'
+            'hiddenDoubles',
+            'nakedTriplets',  
+            'nakedQuads',                         
 
         ]
 
@@ -353,7 +375,13 @@ class Grid {
             'XWings',
             'swordfish',
             'XYWing',
-            'jellyfish'
+            'jellyfish',
+            'XYChain4',
+            'XYChain5',
+            'XYChain6',
+            'XYChain7',
+            'XYChain8',
+            'XYChain9'
         ]
 
         for(let technique of techniques){
@@ -367,11 +395,14 @@ class Grid {
 
     solve() {
         let i = 1
-
+        let x = {}
+        
         let nextStep = this.next()
         while( !this.isSolved() && nextStep && i < 100){
             
             //console.log(nextStep)
+            
+            x[nextStep.type] = x[nextStep.type] ? x[nextStep.type] + 1 : 1
 
             switch (nextStep.type) {
                 case 'hiddenSingle':
@@ -403,7 +434,7 @@ class Grid {
             i++
         }
         
-        // console.log(`steps: ${i}`)
+        // console.log(x)
         // console.log('-------------')
 
         i = 0
@@ -444,3 +475,89 @@ class Grid {
 
 
 module.exports = {Grid}
+
+ // backtrack(triplet, value) {
+    //     let r = Math.floor(triplet/9)
+    //     let c = triplet % 9
+    //     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
+    //     let ss = (Math.floor(r % 3) * 3) + c % 3
+      
+    //     this.row[r][c] = value
+    //     this.column[c][r] = value
+    //     this.square[s][ss] = value
+    //     //console.log(`backtrack: t: ${triplet} r: ${r} c:${c} value: ${value}`)
+    // };    
+
+    // rollback(triplet, value) {
+    //     let r = Math.floor(triplet/9)
+    //     let c = triplet % 9
+    //     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
+    //     let ss = (Math.floor(r % 3) * 3) + c % 3
+      
+    //     this.row[r][c] = value
+    //     this.column[c][r] = value
+    //     this.square[s][ss] = value
+    //     //console.log(`rollback: t: ${triplet} r: ${r} c:${c} value: ${value}`)
+    // };  
+
+    // const solve = (grid, deducedArray=[]) => {    
+//     // deduce
+//     let deduced = deduce(grid)
+    
+//     while ( deduced !== undefined ){
+//         // if(deduced.t == 54 && deduced.value==8){
+//         //     console.log( `deduce fill t: ${deduced.t} v: ${deduced.value}  r: ${deduced.r}` )
+//         //     console.log(deduced.row)
+//         //     console.log(deduced.column)
+//         //     console.log(deduced.square)
+//         // }  
+//         // if(deduced.t == 65 && deduced.value==8){
+//         //     console.log( `deduce fill t: ${deduced.t} v: ${deduced.value}  r: ${deduced.r}` )
+//         //     console.log(deduced.row)
+//         //     console.log(deduced.column)
+//         //     console.log(deduced.square)
+//         // }                    
+//         deducedArray.push(deduced.t)
+//         grid.deducefill(deduced.t, deduced.value)
+//         deduced = deduce(grid)
+        
+//     }
+//     //console.log(deducedArray)
+//     //return grid
+//     if( isSolved(grid) ){
+//         console.log( grid.title + ': is solved')
+//         return grid
+//     }   
+
+
+//     //console.log( grid.row[0] )  
+
+//     //guess
+//     let {r,c} = findUnassigned(grid)
+//     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
+//     let t = (r * 9) + c      
+
+//     let row = grid.row[r]
+//     let column = grid.column[c]
+//     let square = grid.square[s]
+
+//     //let unused = filterTriplet(row, column, square)
+
+//     for(let i=1; i<=9; i++){
+//         let isSafe = filterTriplet(row, column, square).has(i)    
+//         if(isSafe){              
+//             grid.guessfill(t, i)
+//             if( solve(grid, deducedArray) ){
+//                 return grid
+//             }   
+//             grid.backtrack(t, 0) 
+           
+//             while(deducedArray.length){
+//                 let test = deducedArray.pop()
+//                 grid.rollback(test, 0) 
+//             }
+//         }    
+//     }
+
+//     return false
+// }

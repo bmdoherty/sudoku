@@ -37,8 +37,16 @@ class House {
         
     get nakedDoubles() {
         return this.naked(2) 
-    }    
+    }   
     
+    get nakedTriples() {
+        return this.naked(3) 
+    }        
+    
+    get nakedQuads() {
+        return this.naked(4) 
+    }   
+
     naked(size) {
         
         for(let i=0; i<this.unusedCells.length; i++){
