@@ -2,20 +2,75 @@
 
 import {Grid} from './Grid'
 
-function isValid(text) {    
-
-    let grid = new Grid(text).solve()
-    
-    if(grid.cells.filter( v => v.digit != 0).length < 17){
-        return false
+function isValid(text) {   
+    function hasDuplicates(a){
+        
+        return a.length - new Set(a).size 
     }
+
+    let rowText = text.split(/\n/)
+    let grid = {}
+    grid.row = []
+    grid.column = []
+    grid.square = []
+    for(let i=0; i<9; i++){
+        grid.row[i] = []
+        grid.column[i] = []
+        grid.square[i] = []
+    }   
+
+    if(rowText.length != 9){
+        return { 'isValid':false, 'message':'Grid does not contain 9 rows'}
+    }
+
+    let row = []
+    for(let rowID=0; rowID<9; rowID++){
+        row = rowText[rowID].split('')
+        if(row.length != 9){
+            return { 'isValid':false, 'message':'Grid does not contain 9 numbers in row'}
+        }  
+
+        let row = row.map(Number).filter( v => !isNaN(v) )
+        
+        if(row.length != 9){
+            return { 'isValid':false, 'message':'Grid contains non numeric values'}
+        }    
+                
+        grid.row[rowID] = row
+        for(let columnID=0; columnID<9; columnID++){
+            let squareID = Math.floor(rowID/3) * 3 + Math.floor(columnID/3) 
+
+            grid.column[columnID].push( row[columnID]) 
+            grid.square[squareID].push( row[columnID]) 
+        }            
+    }
+
+    for(let house of ['row','column','square']){
+        let nonZeroTotal = 0
+        for(let i=0; i<9; i++){       
+            let nonZeroValues = grid[house][i].filter( v=> v !== 0)
+            
+            if(nonZeroValues.length){
+                nonZeroTotal = nonZeroTotal + nonZeroValues.length
+                if( hasDuplicates(nonZeroValues) ){
+                    return { 'isValid':false, 'message':`Grid contains duplicates in ${house} ${i+1}`}
+                }
+            }
+
+        }
+        
+        if(nonZeroTotal < 17){
+            return { 'isValid':false, 'message':'Grid contains less than 17 digits'}
+        }
+    }
+
+    grid = new Grid(text).solve() 
 
     if( grid.isSolved() ){
-        return true
+        return { 'isValid':true, 'message':'Grid can be solved'}
     }
 
-
-    return false
+    return { 'isValid':false, 'message':'Grid can not be solved by this tool'}
 }
 
 module.exports = {isValid}
