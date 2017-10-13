@@ -202,7 +202,7 @@ class Grid {
                 let node = {'cell':cell, 'mustBe':mustBe, 'cannotBe':digit}
                 let chain = this.makeChainLink(node, bivalueCells.map(v=>v.id), size)
 
-                if(chain.length && chain[0].length){
+                if(chain && chain.length && chain[0].length){
                     return {'chain':chain, 'type':'XYChain'}  
                 }
             }
@@ -349,7 +349,7 @@ class Grid {
         
         return isSolved
     }    
-    
+
     next (){
         let next 
         
@@ -476,88 +476,7 @@ class Grid {
 
 module.exports = {Grid}
 
- // backtrack(triplet, value) {
-    //     let r = Math.floor(triplet/9)
-    //     let c = triplet % 9
-    //     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
-    //     let ss = (Math.floor(r % 3) * 3) + c % 3
-      
-    //     this.row[r][c] = value
-    //     this.column[c][r] = value
-    //     this.square[s][ss] = value
-    //     //console.log(`backtrack: t: ${triplet} r: ${r} c:${c} value: ${value}`)
-    // };    
+ 
 
-    // rollback(triplet, value) {
-    //     let r = Math.floor(triplet/9)
-    //     let c = triplet % 9
-    //     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
-    //     let ss = (Math.floor(r % 3) * 3) + c % 3
-      
-    //     this.row[r][c] = value
-    //     this.column[c][r] = value
-    //     this.square[s][ss] = value
-    //     //console.log(`rollback: t: ${triplet} r: ${r} c:${c} value: ${value}`)
-    // };  
+   
 
-    // const solve = (grid, deducedArray=[]) => {    
-//     // deduce
-//     let deduced = deduce(grid)
-    
-//     while ( deduced !== undefined ){
-//         // if(deduced.t == 54 && deduced.value==8){
-//         //     console.log( `deduce fill t: ${deduced.t} v: ${deduced.value}  r: ${deduced.r}` )
-//         //     console.log(deduced.row)
-//         //     console.log(deduced.column)
-//         //     console.log(deduced.square)
-//         // }  
-//         // if(deduced.t == 65 && deduced.value==8){
-//         //     console.log( `deduce fill t: ${deduced.t} v: ${deduced.value}  r: ${deduced.r}` )
-//         //     console.log(deduced.row)
-//         //     console.log(deduced.column)
-//         //     console.log(deduced.square)
-//         // }                    
-//         deducedArray.push(deduced.t)
-//         grid.deducefill(deduced.t, deduced.value)
-//         deduced = deduce(grid)
-        
-//     }
-//     //console.log(deducedArray)
-//     //return grid
-//     if( isSolved(grid) ){
-//         console.log( grid.title + ': is solved')
-//         return grid
-//     }   
-
-
-//     //console.log( grid.row[0] )  
-
-//     //guess
-//     let {r,c} = findUnassigned(grid)
-//     let s = Math.floor(r/3) * 3 + Math.floor(c/3)
-//     let t = (r * 9) + c      
-
-//     let row = grid.row[r]
-//     let column = grid.column[c]
-//     let square = grid.square[s]
-
-//     //let unused = filterTriplet(row, column, square)
-
-//     for(let i=1; i<=9; i++){
-//         let isSafe = filterTriplet(row, column, square).has(i)    
-//         if(isSafe){              
-//             grid.guessfill(t, i)
-//             if( solve(grid, deducedArray) ){
-//                 return grid
-//             }   
-//             grid.backtrack(t, 0) 
-           
-//             while(deducedArray.length){
-//                 let test = deducedArray.pop()
-//                 grid.rollback(test, 0) 
-//             }
-//         }    
-//     }
-
-//     return false
-// }
