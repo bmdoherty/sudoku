@@ -24,11 +24,11 @@ class Grid {
         let rows = text.split(/\n/).filter( v => v.length > 0)
         let digitArray = []
 
-        for(let i=0; i<rows.length; i++){
+        for(let i=0; i<9; i++){
             digitArray[i] = rows[i].split('').map(Number)
         }
 
-        for(let r=0; r<digitArray.length; r++){
+        for(let r=0; r<9; r++){
             for(let c=0; c<digitArray[r].length; c++){
                 cells.push( new Cell(this, r, c, digitArray[r][c]) )
             }
