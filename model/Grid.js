@@ -29,7 +29,7 @@ class Grid {
         }
 
         for(let r=0; r<9; r++){
-            for(let c=0; c<digitArray[r].length; c++){
+            for(let c=0; c<9; c++){
                 cells.push( new Cell(this, r, c, digitArray[r][c]) )
             }
         }
