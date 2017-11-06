@@ -1,11 +1,9 @@
-"use strict"
-
 import {Cell} from './Cell'
-import {Row} from './Row'
-import {Column} from './Column'
-import {Square} from './Square'
+import Row from './Row'
+import Column from './Column'
+import Square from './Square'
 
-class Grid {
+export default class Grid {
     constructor(text) {
         this.cells = this.textToCells(text)
         this.square = []
@@ -30,7 +28,8 @@ class Grid {
 
         for(let r=0; r<9; r++){
             for(let c=0; c<9; c++){
-                cells.push( new Cell(this, r, c, digitArray[r][c]) )
+                let locked = !!digitArray[r][c]
+                cells.push( new Cell(this, r, c, digitArray[r][c], locked) )
             }
         }
 
@@ -38,15 +37,15 @@ class Grid {
     }  
 
     getSquare(id) {
-        return this.cells.filter( v => v.squareID == id)  
+        return this.cells.filter( v => v.squareID === id)  
     }  
     
     getRow(id) {
-        return this.cells.filter( v => v.rowID == id)  
+        return this.cells.filter( v => v.rowID === id)  
     }  
 
     getColumn(id) {
-        return this.cells.filter( v => v.columnID == id)  
+        return this.cells.filter( v => v.columnID === id)  
     }      
     
     getNextStep(technique) {   
@@ -93,20 +92,20 @@ class Grid {
             .filter( v => v.columns.length >= 2)
 
             if(rows.length){
-                let possibleFishRow = this.row[0].combinations( rows.map(v => v.row) ).filter( v => v.length == size)
+                let possibleFishRow = this.row[0].combinations( rows.map(v => v.row) ).filter( v => v.length === size)
 
                 for(let fishRows of possibleFishRow){
                     let fishColumns = []
                     for(let i=0; i<fishRows.length; i++){
-                        fishColumns = fishColumns.concat(rows.find( v => v.row == fishRows[i]).columns)
+                        fishColumns = fishColumns.concat(rows.find( v => v.row === fishRows[i]).columns)
                     }
 
                     fishColumns = [...new Set([...fishColumns])]
 
-                    if(fishColumns.length == size){
+                    if(fishColumns.length === size){
                         let cellsToExclude = this.cells
                         .filter( v => v.possibilities.has(digit) )
-                        .filter( v => fishRows.indexOf(v.rowID) == -1 )
+                        .filter( v => fishRows.indexOf(v.rowID) === -1 )
                         .filter( v => fishColumns.indexOf(v.columnID) > -1 )
 
                         if(cellsToExclude.length){
@@ -126,9 +125,9 @@ class Grid {
             .filter(v => node.cell.canSee.has(v))
             .filter( v=> v.possibilities.has(node.mustBe))
 
-            let sameRow = chain[0].cell.rowID == node.cell.rowID
-            let sameColumn = chain[0].cell.columnID == node.cell.columnID
-            let sameSquare = chain[0].cell.squareID == node.cell.squareID
+            let sameRow = chain[0].cell.rowID === node.cell.rowID
+            let sameColumn = chain[0].cell.columnID === node.cell.columnID
+            let sameSquare = chain[0].cell.squareID === node.cell.squareID
 
             if(excluded.length && !sameRow && !sameColumn && !sameSquare){
                 visited.push(node.cell.id)
@@ -138,17 +137,17 @@ class Grid {
 
         let nextLink = (house, node) => {
             let links = house.links[node.mustBe]
-            .filter( v => visited.indexOf(v.id) == -1)
-            .filter( v => v.id != cell.id)
+            .filter( v => visited.indexOf(v.id) === -1)
+            .filter( v => v.id !== cell.id)
 
             if(links.length){
                 let linkCell = this.cells[links[0].id]
-                let mustBe = [...linkCell.possibilities.values()].filter(v=> v != node.mustBe)[0]
-                let cannotBe = [...linkCell.possibilities.values()].filter(v=> v != mustBe)[0]
+                let mustBe = [...linkCell.possibilities.values()].filter(v=> v !== node.mustBe)[0]
+                let cannotBe = [...linkCell.possibilities.values()].filter(v=> v !== mustBe)[0]
 
                 this.makeChainLink(
                     {'cell':linkCell, 'mustBe':mustBe, 'cannotBe':cannotBe}, 
-                    cells.filter(v=> v.id != cell.id), 
+                    cells.filter(v=> v.id !== cell.id), 
                     size,
                     chain.slice(0),
                     visited,
@@ -163,7 +162,7 @@ class Grid {
             return
         }
 
-        if (node.mustBe == chain[0].cannotBe ) {
+        if (node.mustBe === chain[0].cannotBe ) {
             processLink(node, chain)
             
         } else {
@@ -190,15 +189,15 @@ class Grid {
     XYChain(size) {
         
         for(let digit=1; digit<=9; digit++){
-            let bivalueCells = this.cells.filter( v => v.possibilities.size == 2)
+            let bivalueCells = this.cells.filter( v => v.possibilities.size === 2)
             let startCells = bivalueCells.filter( v => v.possibilities.has(digit))
             
             while(startCells.length){
                 let cell = startCells[0]
-                startCells = startCells.filter( v => v.id != cell.id)
-                bivalueCells = bivalueCells.filter(v=> v.id != cell.id)
+                startCells = startCells.filter( v => v.id !== cell.id)
+                bivalueCells = bivalueCells.filter(v=> v.id !== cell.id)
 
-                let mustBe = [...cell.possibilities].filter( v => v != digit)[0]
+                let mustBe = [...cell.possibilities].filter( v => v !== digit)[0]
                 let node = {'cell':cell, 'mustBe':mustBe, 'cannotBe':digit}
                 let chain = this.makeChainLink(node, bivalueCells.map(v=>v.id), size)
 
@@ -252,10 +251,10 @@ class Grid {
     }     
 
     excludeBasedOnNaked(naked) {
-        let ids = naked.id.split('-').map(Number)
+        let ids = naked.ids
         this[naked.house.type][naked.house.id].cells
-            .filter( v => v.digit == 0 )
-            .filter( v => ids.indexOf(v.id) == -1 )
+            .filter( v => v.digit === 0 )
+            .filter( v => ids.indexOf(v.id) === -1 )
             .forEach( v => {
                 //console.log(v.id)
                 v.impossibilities = v.impossibilities.concat(...naked.digits)
@@ -266,11 +265,11 @@ class Grid {
     
     excludeBasedOnHiddenDouble(hiddenDouble) {
         this[hiddenDouble.house.type][hiddenDouble.house.id].cells
-            .filter( v => v.digit == 0 )
+            .filter( v => v.digit === 0 )
             .filter( v => hiddenDouble.id.indexOf(v.id) >= 0 )
             .forEach( v => {
                 let excluded = [...v.possibilities].filter( v=> {
-                    return hiddenDouble.digits.indexOf(v) == -1
+                    return hiddenDouble.digits.indexOf(v) === -1
                 })
                 v.impossibilities = v.impossibilities.concat(...excluded)
             })
@@ -282,7 +281,7 @@ class Grid {
         
             this.cells
             .filter( v => v.possibilities.has(XWing.digit) )
-            .filter( v => XWing.rows.indexOf(v.rowID) == -1 )
+            .filter( v => XWing.rows.indexOf(v.rowID) === -1 )
             .filter( v => XWing.columns.indexOf(v.columnID) > -1 )
             .forEach( v => {
                 Grid.addToImpossibilities(v, XWing.digit)
@@ -303,7 +302,7 @@ class Grid {
             Grid.addToImpossibilities(v, end.mustBe)
         })
 
-        return true
+        return excluded
     }; 
 
     excludeBasedOnLockedCandidate(lockedCandidate) {
@@ -322,11 +321,11 @@ class Grid {
     };      
 
     static cellIsUnassigned(cell){
-        return cell.digit == 0
+        return cell.digit === 0
     }
 
     static cellIsNotInArray(cell, array){
-        return array.indexOf(cell.id) == -1
+        return array.indexOf(cell.id) === -1
     }  
     
     static cellIsInArray(cell, array){
@@ -342,7 +341,7 @@ class Grid {
     isSolved() {
         let isSolved = true
         for(let i=0; i<9; i++){      
-            if ( this.row[i].isSolved == false){
+            if ( this.row[i].isSolved === false){
                 isSolved = false
             }           
         }    
@@ -354,8 +353,8 @@ class Grid {
         let next 
         
         let techniques = [
-            'hiddenSingles', 
-            'nakedSingles', 
+            'nakedSingles',
+            'hiddenSingles',              
             'nakedDoubles', 
             'lockedCandidates',
             'hiddenDoubles',
@@ -398,7 +397,7 @@ class Grid {
         let x = {}
         
         let nextStep = this.next()
-        while( !this.isSolved() && nextStep && i < 100){
+        while( !this.isSolved() && nextStep){
             
             //console.log(nextStep)
             
@@ -431,52 +430,43 @@ class Grid {
                     break;
             }
             nextStep = this.next()
-            i++
+            i = i +1
         }
         
-        // console.log(x)
-        // console.log('-------------')
-
-        i = 0
-
-        // this.XYWing.forEach( v => {
-        //     this.excludeBasedOnXYChain(v)
-        // })           
-
-        // console.log( `i: ${i}` )
-        //console.log( this.nakedDoubles )
-        //console.log( this.cells[12].possibilities )
-
-        // // console.log( this.lockedCandidates )
-        // // console.log( this.column[3].cells.filter( Grid.cellCouldBeDigit(3)).map(v=> v.columnID))
-
-        // console.log( '==================================' )
-        // console.log( this.row[0].cells.map( v => v.digit) )
-        // console.log( this.row[1].cells.map( v => v.digit) )
-        // console.log( this.row[2].cells.map( v => v.digit) )
-        // console.log( this.row[3].cells.map( v => v.digit) )
-        // console.log( this.row[4].cells.map( v => v.digit) )
-        // console.log( this.row[5].cells.map( v => v.digit) )
-        // console.log( this.row[6].cells.map( v => v.digit) )
-        // console.log( this.row[7].cells.map( v => v.digit) )
-        // console.log( this.row[8].cells.map( v => v.digit) )
-
         return this
-    }       
+    }     
     
-    get title() {
-        return this._title;
-    };
-      
-    set title(title) {
-        this._title = title
-    };
+    apply(step) {
+
+        switch (step.type) {
+            case 'hiddenSingle':
+                this.cells[step.id].digit = step.digit
+                break;
+            case 'nakedSingle':
+                this.cells[step.id].digit = step.digit
+                break;
+            case 'lockedCandidate':
+                this.excludeBasedOnLockedCandidate(step)
+                break;
+            case 'naked':
+                this.excludeBasedOnNaked(step)
+                break;    
+            case 'hiddenDouble':
+                this.excludeBasedOnHiddenDouble(step)
+                break;   
+            case 'fish':
+                this.excludeBasedOnFish(step)
+                break; 
+            case 'XYChain':
+                this.excludeBasedOnXYChain(step.chain)  
+                break;                     
+                                    
+            default:
+                break;
+        }
+        
+        return 
+    }      
 }
 
-
-module.exports = {Grid}
-
- 
-
-   
-
+//module.exports = {Grid}

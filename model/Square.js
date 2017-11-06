@@ -1,10 +1,8 @@
-"use strict"
-
 import {House} from './House'
 import {isRow} from './Row'
 import {isColumn} from './Column'
 
-class Square extends House{
+export default class Square extends House{
     constructor(id, cells, grid) {
         super(id, cells, grid);
         this.type = 'square'
@@ -24,8 +22,9 @@ class Square extends House{
 
                     if(possibleCells.length < total.length){
                         let house = {'type':'row', 'id':rowID}
+                        let locked = {'type':'square', 'id':this.id}
                         let ids = possibleCells.map( v => v.id)
-                        return {'ids':ids, 'digit':digit, 'house':house, 'type':'lockedCandidate'}  
+                        return {'ids':ids, 'digit':digit, 'house':house, 'locked':locked, 'type':'lockedCandidate'}  
                     }
                 }   
            
@@ -35,8 +34,9 @@ class Square extends House{
                     
                     if(possibleCells.length < total.length){                       
                         let house = {'type':'column', 'id':columnID}
+                        let locked = {'type':'square', 'id':this.id}
                         let ids = possibleCells.map( v => v.id)
-                        return {'ids':ids, 'digit':digit, 'house':house, 'type':'lockedCandidate'} 
+                        return {'ids':ids, 'digit':digit, 'house':house, 'locked':locked, 'type':'lockedCandidate'} 
                     }
                 }               
             }                  
@@ -55,4 +55,4 @@ export function isSquare(cells) {
     return cells.every( (v,i,a) => v.squareID === a[0].squareID)
 }
 
-module.exports = {Square, isSquare}
+//module.exports = {Square, isSquare}

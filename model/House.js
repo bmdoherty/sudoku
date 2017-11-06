@@ -1,5 +1,3 @@
-"use strict"
-
 class House {
     constructor(id, cells, grid) {
         this.id = id      
@@ -21,12 +19,28 @@ class House {
         for(let i=0; i<this.unusedCells.length; i++){
             let cell = this.unusedCells[i]
 
-            if( cell.possibilities.size == 1){
+            if( cell.possibilities.size === 1){
                 let digit = cell.possibilities.values().next().value
                 let cells = [...cell.canSee]
-                let used = {}
-                for(let i=0; i<=9; i++){
-                    used[i] = cells.filter( v=> v.digit == i).map( v=>v.id)[0]
+                let used = []
+
+                // all used in this cells houses
+                for(let house of ['row','column','square']){
+                    let houseID = cell[house+'ID']
+                    let houseCells = this.grid[house][houseID].cells
+                    if(houseCells.filter(v => v.digit > 0).length === 8){
+                        used = houseCells.filter(v => v.digit > 0).map( v=>v.id)
+                        return {'id':cell.id, 'digit':digit, 'used':used, 'type':'nakedSingle'}
+                    }
+                }
+
+                for(let i=1; i<=9; i++){
+                    if(i !== digit){
+                        let seenBy = cells.filter( v=> v.digit === i).map( v=>v.id).map(Number)[0]
+                        if(!isNaN(seenBy)){
+                            used.push(seenBy)
+                        }
+                    }
                 }
                 return {'id':cell.id, 'digit':digit, 'used':used, 'type':'nakedSingle'}
             }               
@@ -61,10 +75,10 @@ class House {
                 }
             }
 
-            if(sharedCells.length == size){
+            if(sharedCells.length === size){
                 //console.log(`type: ${this.type} id: ${this.id}`)
-                if(sharedCells.length == cell.possibilities.size 
-                    && sharedCells.length != this.unusedCells.length){
+                if(sharedCells.length === cell.possibilities.size 
+                    && sharedCells.length !== this.unusedCells.length){
                        
                     let cellsWithDigitsPossible = 0
                     for(let digit of cell.possibilities){
@@ -75,8 +89,7 @@ class House {
                     //console.log(`cellsWithDigitsPossible: ${cellsWithDigitsPossible} id: ${(size * cell.possibilities.size)}`)
                     if(cellsWithDigitsPossible > size * cell.possibilities.size){
                         let house = {'type':this.type, 'id':this.id}
-                        let id = sharedCells.join('-')
-                        return {'id':id, 'digits':cell.possibilities, 'house':house, 'length':sharedCells.length, 'type':'naked'}
+                        return {'ids':sharedCells, 'digits':cell.possibilities, 'house':house, 'length':sharedCells.length, 'type':'naked'}
                     }
                 }
             }
@@ -101,20 +114,20 @@ class House {
     }
 
     compare(a,b) {
-        return a.length==b.length && a.every((v,i)=> v === b[i])
+        return a.length === b.length && a.every((v,i)=> v === b[i])
     }
 
     get hiddenDoubles() {
         //console.log(`type: ${this.type} id: ${this.id} unused:${this.unused.size}`)
         if(this.unused.size){
-            let possibleDouble = this.combinations([...this.unused]).filter( v => v.length == 2)
+            let possibleDouble = this.combinations([...this.unused]).filter( v => v.length === 2)
 
             for(let double of possibleDouble){
                 let a = this.unusedCells.filter( v => v.possibilities.has(double[0]) )
                 let b = this.unusedCells.filter( v => v.possibilities.has(double[1]) )
                 //console.log(a)
                 //console.log(b)
-                if( a.length == 2 && this.compare(a,b)){
+                if( a.length === 2 && this.compare(a,b)){
                     //console.log(`type: ${this.type} id: ${this.id}`)
                     let cellA = a[0]
                     let cellB = a[1]
@@ -135,8 +148,9 @@ class House {
         for(let digit=0; digit<=9; digit++){
             let possibleCells = this.cells.filter( v => v.possibilities.has(digit))
 
-            if( possibleCells.length == 1){
-                return {'id':possibleCells[0].id, 'digit':digit, 'type':'hiddenSingle'}
+            if( possibleCells.length === 1){
+                let house = {'type':this.type, 'id':this.id}  
+                return {'id':possibleCells[0].id, 'digit':digit, 'house':house, 'type':'hiddenSingle'}
             }    
                     
         }
@@ -144,15 +158,15 @@ class House {
     }  
 
     get isSolved() {
-        return this.usedCells.length == 9
+        return this.usedCells.length === 9
     }  
 
     get usedCells() {
-        return this.cells.filter( v => v.digit != 0)
+        return this.cells.filter( v => v.digit !== 0)
     }    
 
     get unusedCells() {
-        return this.cells.filter( v => v.digit == 0)
+        return this.cells.filter( v => v.digit === 0)
     }   
  
     
@@ -161,7 +175,7 @@ class House {
         
         for(let digit of this.unused){
             let digitLinks = this.cells
-            .filter( v => v.possibilities.has(digit) && v.possibilities.size == 2)
+            .filter( v => v.possibilities.has(digit) && v.possibilities.size === 2)
             .map(v => {
                 return {
                     'id':v.id,

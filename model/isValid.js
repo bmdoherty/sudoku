@@ -1,8 +1,6 @@
-"use strict"
+import Grid from './Grid'
 
-import {Grid} from './Grid'
-
-function isValid(text) {   
+export default function isValid(text) {   
     function hasDuplicates(a){
         
         return a.length - new Set(a).size 
@@ -19,20 +17,20 @@ function isValid(text) {
         grid.square[i] = []
     }   
 
-    if(rowText.length != 9){
+    if(rowText.length !== 9){
         return { 'isValid':false, 'message':'Grid does not contain 9 rows'}
     }
 
     let row = []
     for(let rowID=0; rowID<9; rowID++){
         row = rowText[rowID].split('')
-        if(row.length != 9){
+        if(row.length !== 9){
             return { 'isValid':false, 'message':'Grid does not contain 9 numbers in row'}
         }  
 
-        let row = row.map(Number).filter( v => !isNaN(v) )
+        row = row.map(Number).filter( v => !isNaN(v) )
         
-        if(row.length != 9){
+        if(row.length !== 9){
             return { 'isValid':false, 'message':'Grid contains non numeric values'}
         }    
                 
@@ -73,4 +71,4 @@ function isValid(text) {
     return { 'isValid':false, 'message':'Grid can not be solved by this tool'}
 }
 
-module.exports = {isValid}
+//module.exports = {isValid}
