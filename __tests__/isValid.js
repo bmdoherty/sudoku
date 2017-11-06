@@ -1,5 +1,4 @@
-const {Grid} = require('../model/Grid'); 
-const {isValid} = require('../model/isValid')
+import isValid from '../model/isValid';
 
 it('invalid for 2 rows', () => {
     let text = 'abcdefghk\nabcdefghk' 
@@ -72,3 +71,9 @@ it('valid for very hard', () => {
     expect( v.isValid ).toEqual( false )
     expect( v.message ).toEqual( 'Grid can not be solved by this tool' )
 });
+
+
+
+
+
+

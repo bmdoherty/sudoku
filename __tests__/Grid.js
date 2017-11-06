@@ -1,12 +1,21 @@
-const {Grid} = require('../model/Grid'); 
+// const {Grid} = require('../model/Grid'); 
+import Grid from '../model/Grid';
 
-it('Guardian hard Oct 12', () => {
-    let text = '000000003\n089000060\n060078000\n000030006\n004500290\n006000014\n000020001\n070085000\n500403800'
+it('Guardian hard Oct 13', () => {
+    let text = '000000000\n007020400\n008504900\n009000800\n510080027\n000203000\n000000000\n435000196\n180000054'
     let grid = new Grid(text).solve()
     let firstRow = grid.row[0].cells.map( v => v.digit)
 
-    expect( firstRow ).toEqual( [4, 2, 7, 6, 5, 1, 9, 8, 3] ); 
+    expect( firstRow ).toEqual( [2, 4, 1, 6, 9, 7, 3, 8, 5] ); 
 });
+
+// it('Guardian hard Oct 12', () => {
+//     let text = '000000003\n089000060\n060078000\n000030006\n004500290\n006000014\n000020001\n070085000\n500403800'
+//     let grid = new Grid(text).solve()
+//     let firstRow = grid.row[0].cells.map( v => v.digit)
+
+//     expect( firstRow ).toEqual( [4, 2, 7, 6, 5, 1, 9, 8, 3] ); 
+// });
 
 it('swordfish & XY Wing', () => {
     let text = '195367248\n078050369\n306098157\n003780590\n709005006\n584906710\n832549671\n907013025\n051072900'
@@ -40,21 +49,21 @@ it('random 2', () => {
     expect( firstRow ).toEqual( [ 7, 3, 8, 2, 9, 5, 1, 6, 4 ] ); 
 });    
 
-it('this week mag', () => {
-    let text = '013000000\n000390501\n000004090\n000000000\n782503910\n196702380\n000007050\n048000000\n000830609'
-    let grid = new Grid(text).solve()
-    let firstRow = grid.row[0].cells.map( v => v.digit)
+// it('this week mag', () => {
+//     let text = '013000000\n000390501\n000004090\n000000000\n782503910\n196702380\n000007050\n048000000\n000830609'
+//     let grid = new Grid(text).solve()
+//     let firstRow = grid.row[0].cells.map( v => v.digit)
 
-    expect( firstRow ).toEqual( [ 9, 1, 3, 2, 5, 6, 4, 7, 8 ] ); 
-});   
+//     expect( firstRow ).toEqual( [ 9, 1, 3, 2, 5, 6, 4, 7, 8 ] ); 
+// });   
 
-it('hidden singles', () => {
-    let text = '003020600\n900305001\n001806400\n008102900\n700000008\n006708200\n002609500\n800203009\n005010300'
-    let grid = new Grid(text).solve()
-    let firstRow = grid.row[0].cells.map( v => v.digit)
+// it('hidden singles', () => {
+//     let text = '003020600\n900305001\n001806400\n008102900\n700000008\n006708200\n002609500\n800203009\n005010300'
+//     let grid = new Grid(text).solve()
+//     let firstRow = grid.row[0].cells.map( v => v.digit)
 
-    expect( firstRow ).toEqual([ 4, 8, 3, 9, 2, 1, 6, 5, 7 ] ); 
-});
+//     expect( firstRow ).toEqual([ 4, 8, 3, 9, 2, 1, 6, 5, 7 ] ); 
+// });
 
 it('euler 0: hidden singles', () => {
     let text = '100920000\n524010000\n000000070\n050008102\n000000000\n402700090\n060000000\n000030945\n000071006'
@@ -98,11 +107,11 @@ it('euler 48: ', async () => {
 });
 
 it('euler 49: ', async () => {
-    let text = '000003017\n015009008\n060000000\n100007000\n009000200\n000000020\n000500004\n500600340\n340200000'
+    let text = '000003017\n015009008\n060000000\n100007000\n009000200\n000500004\n000000020\n500600340\n340200000'
     let grid = new Grid(text).solve()
     let firstRow = grid.row[0].cells.map( v => v.digit)
 
-    expect( firstRow ).toEqual( [ 9, 0, 4, 8, 5, 3, 6, 1, 7 ] ); 
+    expect( firstRow ).toEqual( [ 2, 9, 4, 8, 6, 3, 5, 1, 7 ] ); 
 });
 
 it('euler 50: ', async () => {
