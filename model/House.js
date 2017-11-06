@@ -1,3 +1,5 @@
+import {nakedSingle} from './strategies/nakedSingle'
+
 class House {
     constructor(id, cells, grid) {
         this.id = id      
@@ -15,38 +17,39 @@ class House {
     }   
 
     // naked singles have only one possibility
-    get nakedSingles() {
-        for(let i=0; i<this.unusedCells.length; i++){
-            let cell = this.unusedCells[i]
-
-            if( cell.possibilities.size === 1){
-                let digit = cell.possibilities.values().next().value
-                let cells = [...cell.canSee]
-                let used = []
-
-                // all used in this cells houses
-                for(let house of ['row','column','square']){
-                    let houseID = cell[house+'ID']
-                    let houseCells = this.grid[house][houseID].cells
-                    if(houseCells.filter(v => v.digit > 0).length === 8){
-                        used = houseCells.filter(v => v.digit > 0).map( v=>v.id)
-                        return {'id':cell.id, 'digit':digit, 'used':used, 'type':'nakedSingle'}
-                    }
-                }
-
-                for(let i=1; i<=9; i++){
-                    if(i !== digit){
-                        let seenBy = cells.filter( v=> v.digit === i).map( v=>v.id).map(Number)[0]
-                        if(!isNaN(seenBy)){
-                            used.push(seenBy)
-                        }
-                    }
-                }
-                return {'id':cell.id, 'digit':digit, 'used':used, 'type':'nakedSingle'}
-            }               
-        }
-
-        return undefined
+    get nakedSingles() {    
+        return nakedSingle(this)
+        // for(let i=0; i<this.unusedCells.length; i++){
+        //     let cell = this.unusedCells[i]
+      
+        //     if( cell.possibilities.size === 1){
+        //           let digit = cell.possibilities.values().next().value
+        //         let cells = [...cell.canSee]
+        //         let used = []
+      
+        //         // all used in this cells houses
+        //         // for(let house of ['row','column','square']){
+        //         //     let houseID = cell[house+'ID']
+        //         //     let houseCells = this.grid[house][houseID].cells
+        //         //     if(houseCells.filter(v => v.digit > 0).length === 8){
+        //         //         used = houseCells.filter(v => v.digit > 0).map( v=>v.id)
+        //         //         return {'id':cell.id, 'digit':digit, 'used':used, 'type':'nakedSingle'}
+        //         //     }
+        //         // }
+      
+        //         // for(let i=1; i<=9; i++){
+        //         //     if(i !== digit){
+        //         //         let seenBy = cells.filter( v=> v.digit === i).map( v=>v.id).map(Number)[0]
+        //         //         if(!isNaN(seenBy)){
+        //         //             used.push(seenBy)
+        //         //         }
+        //         //     }
+        //         // }
+        //         return {'id':cell.id, 'digit':digit, 'used':used, 'type':'nakedSingle'}
+        //     }               
+        // }
+      
+        // return undefined        
     }   
         
     get nakedDoubles() {
