@@ -71,9 +71,3 @@ it('valid for very hard', () => {
     expect( v.isValid ).toEqual( false )
     expect( v.message ).toEqual( 'Grid can not be solved by this tool' )
 });
-
-
-
-
-
-

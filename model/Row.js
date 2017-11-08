@@ -1,5 +1,5 @@
 import {House} from './House'
-import {isSquare} from './Square'
+
 
 export default class Row extends House {
     constructor(id, cells, grid) {
@@ -10,31 +10,6 @@ export default class Row extends House {
 
         
     }  
-
-    get lockedCandidates() {
-        
-        for(let digit of this.unused){
-            let possibleCells = this.cells.filter( v => v.possibilities.has(digit))
-            
-            if( possibleCells.length > 1 ){
-                if(isSquare(possibleCells)){   
-                    let squareID = possibleCells[0].squareID      
-                    let total = this.grid.square[squareID].cells.filter( v => v.possibilities.has(digit))
-                    
-                    if(possibleCells.length < total.length){                     
-                        let house = {'type':'square', 'id':squareID}
-                        let locked = {'type':'row', 'id':this.id}
-                        let ids = possibleCells.map( v => v.id)
-                        return {'ids':ids, 'digit':digit, 'house':house, 'locked':locked, 'type':'lockedCandidate'} 
-                    }
-                }                 
-            }                  
-        }
-
-        return undefined
-    }   
-
-
 }
 
 export function isRow(cells) {
@@ -44,7 +19,3 @@ export function isRow(cells) {
 
     return cells.every( (v,i,a) => v.rowID === a[0].rowID)
 }
-
-
-//module.exports = {Row, isRow}
-

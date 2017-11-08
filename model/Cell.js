@@ -75,6 +75,12 @@ class Cell {
 
         return new Set( r.concat(c).concat(s) )
     }
+
+    addToImpossibilities(digit){
+        this.impossibilities.push(digit)    
+
+        return this.impossibilities
+    }       
 }
 
 module.exports = {Cell}
