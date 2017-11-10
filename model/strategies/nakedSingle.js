@@ -40,7 +40,7 @@ export default class NakedSingle {
             let cell = candidateCells[0]        
             let digit = cell.possibilities.values().next().value 
             let used = usedBy(cell, grid)
-
+         
             return {'id':cell.id, 'digit':digit, 'used':used, 'strategy':this}
         }               
     

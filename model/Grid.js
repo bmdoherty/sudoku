@@ -19,7 +19,7 @@ const lc = new LockedCandidate()
 const f = new Fish()
 const xy = new XYChain()
 
-const strategies = [ns,hs,n,h,lc,f,xy]
+const strategies = [hs,ns,n,h,lc,f,xy]
 
 export default class Grid {
     constructor(text) {
@@ -40,7 +40,7 @@ export default class Grid {
 
     textToCells(text) {
         let cells = []
-        let rows = text.split(/\n/).filter( v => v.length > 0)
+        let rows = text.match(/.{1,9}/g)
         let digitArray = []
 
         for(let i=0; i<9; i++){
@@ -94,8 +94,10 @@ export default class Grid {
     solve() {
         let i = 1      
         let nextStep = this.next()
+        
+        while( !this.isSolved() && nextStep){   
+           // console.log(`${i}: ${nextStep.strategy.type} ${nextStep.length?nextStep.length:''}`)
 
-        while( !this.isSolved() && nextStep){            
             this.apply(nextStep)
             nextStep = this.next()
             i = i + 1

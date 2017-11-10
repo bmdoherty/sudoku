@@ -1,75 +1,59 @@
-const onlyCellsLeft = (size, house) => {
-    return size === house.unusedCells.length
-}
-
-const isCorrectSize = (size, cell, sharedCells) => {
-    return size === sharedCells.length && size === cell.possibilities.size
-}
-
-const canExcludeAPossibilty = (size, house, cell) => {
-    let cellsWithDigitsPossible = 0
+const cellsAffected = (house, id, digits) => {
     
-    for(let digit of cell.possibilities){
-        cellsWithDigitsPossible = house.cells.filter( v => v.possibilities.has(digit)).reduce( (s,v) => s+1, cellsWithDigitsPossible)                        
-    }
+    let cells = house.cells.filter( cell => id.indexOf(cell.id) === -1 )
+        .filter( cell => [...cell.possibilities].some( p => digits.indexOf(p) > -1 ))       
 
-    return cellsWithDigitsPossible > size * size
+    return cells
 }
 
-const isNaked = (size, cell, house, sharedCells) => {
-    if(!sharedCells){
-        return false
-    }
+const canExcludeAPossibilty = (house, id, digits) => {
 
-    return isCorrectSize(size, cell, sharedCells) && !onlyCellsLeft(size, house) && canExcludeAPossibilty(size, house, cell) 
+    return !!cellsAffected(house, id, digits).length
 }
 
-
-
-export default class naked {
+export default class Naked {
     constructor() {
+        this.type = 'Naked'
         return this
     }  
     
     find(grid) {
-        let candidateHouses = grid.house.filter( house => house.unused.size > 1)
+        let candidateHouses 
 
-        for(let house of candidateHouses){
-            let sharedCells = []
+        for(let size=2; size<=4; size++){  
+            candidateHouses = grid.house.filter( house => house.unused.size > size)
 
-            for(let i=0; i<house.unusedCells.length; i++){
-                let cell = house.unusedCells[i]
-                sharedCells.push(cell.id)
+            for(let house of candidateHouses){            
+                let possibleSetOfNakedDigits = house.cells.filter(cell => cell.possibilities.size <= size).map(cell => [...cell.possibilities])
 
-                for(let j=i+1; j<house.unusedCells.length; j++){
-                    let candidate = house.unusedCells[j]
-                    let containsAll = [...candidate.possibilities].every(possibility => cell.possibilities.has(possibility))
-                    if(containsAll){
-                        sharedCells.push(candidate.id)
-                    }
-                }
-
-                for(let size in [2,3,4]){
-                    if( isNaked((size, cell, house, sharedCells) ) ){                       
-                        return {'ids':sharedCells, 'digits':cell.possibilities, 'house':house, 'length':sharedCells.length, 'strategy':this}                        
-                    }
+                for(let possibleNakedDigits of possibleSetOfNakedDigits ){
                     
-                }      
+                    let possibleSetOfNakedCells = house.unusedCells
+                        .filter( cell => [...cell.possibilities].every( ( v => possibleNakedDigits.indexOf(v) > -1 )))
+
+                        
+                    if(possibleSetOfNakedCells.length === size){
+                
+                        let id = possibleSetOfNakedCells.map(v=>v.id)
+                        let digits = possibleNakedDigits    
+
+                        if( canExcludeAPossibilty(house, id, digits) ){
+                            return {'id':id, 'digits':digits, 'house':house, 'length':size, 'strategy':this}  
+                        }
+                    }                 
+                }
             }
         }
-    
+
         return undefined
     }
 
     apply(grid, step){
-        let ids = step.ids
-        grid[step.house.type][step.house.id].cells
-            .filter( v => v.digit === 0 )
-            .filter( v => ids.indexOf(v.id) === -1 )
-            .forEach( v => {
-                //console.log(v.id)
-                v.impossibilities = v.impossibilities.concat(...step.digits)
-            })
+
+        cellsAffected(step.house, step.id, step.digits)  
+        .forEach( v => {
+            v.impossibilities = v.impossibilities.concat(step.digits)
+        })
 
         return true        
     }      

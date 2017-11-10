@@ -8,6 +8,7 @@ const cellIsNotInArray = (cell, array) => {
 
 export default class LockedCandidate {
     constructor() {
+        this.type = 'LockedCandidate'
         return this
     }  
     
@@ -30,7 +31,7 @@ export default class LockedCandidate {
                                 if(possibleCells.length < total.length){                     
                                     let locked = {'type':'column', 'id':house.id}
                                     let ids = possibleCells.map( v => v.id)
-                                    return {'ids':ids, 'digit':digit, 'house':{'type':'square', 'id':squareID}, 'locked':locked, 'type':'lockedCandidate', 'strategy':this} 
+                                    return {'ids':ids, 'digit':digit, 'house':{'type':'square', 'id':squareID}, 'locked':locked, 'strategy':this} 
                                 }
                             }                 
                         }                  
@@ -50,7 +51,7 @@ export default class LockedCandidate {
                                 if(possibleCells.length < total.length){
                                     let locked = {'type':'square', 'id':this.id}
                                     let ids = possibleCells.map( v => v.id)
-                                    return {'ids':ids, 'digit':digit, 'house':{'type':'row', 'id':rowID}, 'locked':locked, 'type':'lockedCandidate', 'strategy':this}  
+                                    return {'ids':ids, 'digit':digit, 'house':{'type':'row', 'id':rowID}, 'locked':locked, 'strategy':this}  
                                 }
                             }   
                     
@@ -62,7 +63,7 @@ export default class LockedCandidate {
 
                                     let locked = {'type':'square', 'id':house.id}
                                     let ids = possibleCells.map( v => v.id)
-                                    return {'ids':ids, 'digit':digit, 'house':{'type':'column', 'id':columnID}, 'locked':locked, 'type':'lockedCandidate', 'strategy':this} 
+                                    return {'ids':ids, 'digit':digit, 'house':{'type':'column', 'id':columnID}, 'locked':locked, 'strategy':this} 
                                 }
                             }               
                         }                  

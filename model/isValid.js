@@ -6,7 +6,7 @@ export default function isValid(text) {
         return a.length - new Set(a).size 
     }
 
-    let rowText = text.split(/\n/)
+    let rows = text.match(/.{1,9}/g)
     let grid = {}
     grid.row = []
     grid.column = []
@@ -17,13 +17,17 @@ export default function isValid(text) {
         grid.square[i] = []
     }   
 
-    if(rowText.length !== 9){
+    // if(text.length !== 81){
+    //     return { 'isValid':false, 'message':'Grid does not contain 81 digits'}
+    // }
+        
+    if(rows.length !== 9){
         return { 'isValid':false, 'message':'Grid does not contain 9 rows'}
     }
 
     let row = []
     for(let rowID=0; rowID<9; rowID++){
-        row = rowText[rowID].split('')
+        row = rows[rowID].split('')
         if(row.length !== 9){
             return { 'isValid':false, 'message':'Grid does not contain 9 numbers in row'}
         }  

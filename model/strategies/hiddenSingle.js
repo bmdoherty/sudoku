@@ -1,5 +1,6 @@
 export default class HiddenSingle {
     constructor() {
+        this.type = 'HiddenSingle'
         return this
     }  
 

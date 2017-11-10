@@ -62,6 +62,7 @@ const combinations = (str, length) => {
 
 export default class Fish {
     constructor() {
+        this.type = 'Fish'
         return this
     }  
     
@@ -92,7 +93,7 @@ export default class Fish {
 
                                 // dont return unless it progresses grid solving
                                 if( canExcludeCellsBasedOnFish(grid, digit, fishRows, fishColumns) ){
-                                    return {'digit':digit, 'rows':fishRows, 'columns':fishColumns, 'strategy':this}  
+                                    return {'digit':digit, 'rows':fishRows, 'columns':fishColumns, 'length':fishRows.length, 'strategy':this}  
                                 }   
                             }
                         }

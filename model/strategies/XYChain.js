@@ -67,6 +67,7 @@ const makeChainLink = (grid, node, cells, size, chain=[], visited=[], out=[]) =>
 
 export default class XYChain {
     constructor() {
+        this.type = 'XYChain'
         return this
     }  
     
@@ -88,7 +89,7 @@ export default class XYChain {
                     let chain = makeChainLink(grid, node, bivalueCells.map(v=>v.id), size)
 
                     if(chain && chain.length && chain[0].length){
-                        return {'chain':chain, 'type':'XYChain', 'strategy':this}  
+                        return {'chain':chain, 'type':'XYChain', 'length':chain.length, 'strategy':this}  
                     }
                 }
             }

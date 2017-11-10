@@ -1,7 +1,8 @@
-const {isValid} = require('../model/isValid')
+import isValid from '../model/isValid';
 
-const fs = require('fs');
-const {promisify} = require('util');
+import fs from 'fs'
+import {promisify} from 'util'
+
 const readFileAsync = promisify(fs.readFile);
 
 let arr = []
@@ -26,10 +27,10 @@ test.skip('ignore', () => {
 //     sudoku = arr.pop()
 //   });
 
-//   for(let i=0; i<=49151; i++){
-//     it('suduko' + i, async () => {
-//       sudoku = sudoku.replace(/(.{9})/g,"$1\n").replace(/^\s\s*/, '').replace(/\s\s*$/, '')
-//       let v = isValid(sudoku)     
+//   for(let i=0; i<=10; i++){ //49151
+//     it('suduko' + i, async () => {    
+//       let v = isValid(sudoku)    
+
 //       expect(v.isValid).toEqual(true);
 //     });
 //   }
