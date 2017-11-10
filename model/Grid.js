@@ -19,7 +19,7 @@ const lc = new LockedCandidate()
 const f = new Fish()
 const xy = new XYChain()
 
-const strategies = [hs,ns,n,h,lc,f,xy]
+const strategies = [ns,hs,n,h,lc,f,xy]
 
 export default class Grid {
     constructor(text) {
