@@ -29,7 +29,7 @@ export default class LockedCandidate {
                                 let total = grid.square[squareID].cells.filter( v => v.possibilities.has(digit))
                                 
                                 if(possibleCells.length < total.length){                     
-                                    let locked = {'type':'square', 'id':squareID}
+                                    let locked = grid.square[squareID]
                                     let ids = possibleCells.map( v => v.id)
                                     return {'ids':ids, 'digit':digit, 'house':house, 'locked':locked, 'strategy':this} 
                                 }
@@ -49,7 +49,7 @@ export default class LockedCandidate {
                                 let total = grid.row[rowID].cells.filter( v => v.possibilities.has(digit))
             
                                 if(possibleCells.length < total.length){
-                                    let locked = {'type':'row', 'id':rowID}
+                                    let locked = grid.row[rowID]
                                     let ids = possibleCells.map( v => v.id)
                                     return {'ids':ids, 'digit':digit, 'house':house, 'locked':locked, 'strategy':this}  
                                 }
@@ -61,7 +61,7 @@ export default class LockedCandidate {
                                 
                                 if(possibleCells.length < total.length){                       
 
-                                    let locked = {'type':'column', 'id':columnID}
+                                    let locked = grid.column[columnID]
                                     let ids = possibleCells.map( v => v.id)
                                     return {'ids':ids, 'digit':digit, 'house':house, 'locked':locked, 'strategy':this} 
                                 }
