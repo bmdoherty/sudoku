@@ -1,4 +1,4 @@
-class Cell {
+export default class Cell {
     constructor(grid, row, column, digit, locked) {
         this.id = row*9 + column        
         this.grid = grid
@@ -82,5 +82,3 @@ class Cell {
         return this.impossibilities
     }       
 }
-
-module.exports = {Cell}

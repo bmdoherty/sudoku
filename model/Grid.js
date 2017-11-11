@@ -1,4 +1,4 @@
-import {Cell} from './Cell'
+import Cell from './Cell'
 import Row from './Row'
 import Column from './Column'
 import Square from './Square'
