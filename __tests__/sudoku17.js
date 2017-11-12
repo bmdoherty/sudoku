@@ -1,4 +1,4 @@
-import isValid from '../model/isValid';
+import isValid from '../src/isValid';
 
 import fs from 'fs'
 import {promisify} from 'util'

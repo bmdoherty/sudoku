@@ -1,4 +1,4 @@
-import isValid from '../model/isValid';
+import isValid from '../src/isValid';
 
 // it('invalid for 80 digits', () => {
 //     let text = '00037420000008204000000000000030826600090004805046970547020009000000405010450702'
