@@ -2,7 +2,7 @@
   "name": "sudoku",
   "version": "1.0.0",
   "description": "sudoku",
-  "main": "./src/Grid.js",
+  "main": ".index.js",
   "scripts": {
     "test": "jest -o",
     "build": "webpack"

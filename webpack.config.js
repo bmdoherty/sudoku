@@ -2,12 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/Grid.js',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'grid.min.js',
+    filename: 'sudoku.min.js',
     libraryTarget: 'umd',
-    library: 'Grid'
+    library: 'Sudoku'
   },
   module: {
     rules: [

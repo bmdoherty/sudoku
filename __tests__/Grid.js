@@ -1,4 +1,4 @@
-import Grid from '../src/Grid';
+import Grid from '../src/Grid'
 
 it('HiddenSingle, NakedSingle - Guardian hard Oct 13', () => {
     let text = '000000000007020400008504900009000800510080027000203000000000000435000196180000054'
