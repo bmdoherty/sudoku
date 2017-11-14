@@ -1,54 +1,54 @@
-                {
-                "name": "sudoku",
-                "version": "1.0.2",
-                "description": "sudoku",
-                "main": ".index.js",
-                "scripts": {
-                "test": "jest --all",
-                "build": "webpack",
-                "precommit": "lint-staged",
-                "pretty": "prettier --write"
-                },
-                "lint-staged": {
-                "*.js": [
-                "npm test",
-                "eslint --fix",
-                "npm run pretty",
-                "npm run build",
-                "git add"
-                ],
-                ".*rc": [
-                "pretty --parser json",
-                "git add"
-                ]   
-                ,
-                ".*json": [
-                "pretty --parser json",
-                "git add"
-                ]    
-                },
-                "repository": {
-                "type": "git",
-                "url": "git+https://github.com/bmdoherty/sudoku.git"
-                },
-                "author": "bmdoherty",
-                "license": "ISC",
-                "bugs": {
-                "url": "https://github.com/bmdoherty/sudoku/issues"
-                },
-                "homepage": "https://github.com/bmdoherty/sudoku#readme",
-                "devDependencies": {
-                "@babel/core": "^7.0.0-beta.32",
-                "@babel/preset-env": "^7.0.0-beta.32",
-                "babel-eslint": "^8.0.2",
-                "babel-loader": "^8.0.0-beta.0",
-                "babel-preset-env": "^1.6.1",
-                "eslint": "^4.11.0",
-                "husky": "^0.14.3",
-                "jest": "^21.2.1",
-                "lint-staged": "^5.0.0",
-                "prettier": "1.8.2",
-                "webpack": "^3.8.1"
-                },
-                "dependencies": {}
-                }
+{
+	"name": "sudoku",
+	"version": "1.0.2",
+	"description": "sudoku",
+	"main": ".index.js",
+	"scripts": {
+		"test": "jest -o",
+		"build": "webpack",
+		"precommit": "lint-staged",
+		"pretty": "prettier --write"
+	},
+	"lint-staged": {
+		"*.js": [
+			"npm test",
+			"eslint --fix",
+			"npm run pretty",
+			"npm run build",
+			"git add"
+		],
+		".*rc": [
+			"pretty --parser json",
+			"git add"
+		]   
+		,
+		".*json": [
+			"pretty --parser json",
+			"git add"
+		]    
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bmdoherty/sudoku.git"
+	},
+	"author": "bmdoherty",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/bmdoherty/sudoku/issues"
+	},
+	"homepage": "https://github.com/bmdoherty/sudoku#readme",
+	"devDependencies": {
+		"@babel/core": "^7.0.0-beta.32",
+		"@babel/preset-env": "^7.0.0-beta.32",
+		"babel-eslint": "^8.0.2",
+		"babel-loader": "^8.0.0-beta.0",
+		"babel-preset-env": "^1.6.1",
+		"eslint": "^4.11.0",
+		"husky": "^0.14.3",
+		"jest": "^21.2.1",
+		"lint-staged": "^5.0.0",
+		"prettier": "1.8.2",
+		"webpack": "^3.8.1"
+	},
+	"dependencies": {}
+}
