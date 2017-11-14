@@ -1,7 +1,7 @@
-import Grid from './src/Grid';
+import Solver from './src/Solver';
 import isValid from './src/isValid';
 
 export {
-    Grid,
+    Solver,
     isValid
 };
