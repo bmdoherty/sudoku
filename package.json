@@ -7,12 +7,14 @@
     "test": "jest --all",
     "build": "webpack",
     "precommit": "lint-staged",
-    "pretty": "prettier --write \"src/**/*.js\""
+    "pretty": "npm run prettier --write \"src/**/*.js\"",
+    "eslint": "eslint --fix"
   },
   "lint-staged": {
     "*.js": [
       "npm test",
-      "npm run pretty",
+      "eslint",
+      "pretty",
       "npm run build",
       "git add"
     ]
@@ -34,9 +36,11 @@
     "babel-preset-env": "^1.6.1",
     "jest": "^21.2.1",
     "webpack": "^3.8.1",
+
     "husky": "^0.14.3",
     "lint-staged": "^5.0.0",
-    "prettier": "1.8.2"
+    "prettier": "1.8.2",
+    "eslint": "^4.11.0"
   },
   "dependencies": {}
 }
