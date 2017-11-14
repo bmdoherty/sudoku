@@ -1,4 +1,4 @@
-import Grid from './Grid'
+import Solver from './Solver'
 
 export default function isValid(text) {   
     function hasDuplicates(a){
@@ -16,10 +16,6 @@ export default function isValid(text) {
         grid.column[i] = []
         grid.square[i] = []
     }   
-
-    // if(text.length !== 81){
-    //     return { 'isValid':false, 'message':'Grid does not contain 81 digits'}
-    // }
         
     if(rows.length !== 9){
         return { 'isValid':false, 'message':'Grid does not contain 9 rows'}
@@ -66,9 +62,9 @@ export default function isValid(text) {
         }
     }
 
-    grid = new Grid(text).solve() 
+    let solver = new Solver(text).solve() 
 
-    if( grid.isSolved() ){
+    if( solver.isSolved() ){
         return { 'isValid':true, 'message':'Grid can be solved'}
     }
 
