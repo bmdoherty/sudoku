@@ -1,4 +1,4 @@
-import {House} from './House'
+import House from './House'
 
 export default class Square extends House{
     constructor(id, cells, grid) {

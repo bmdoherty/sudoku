@@ -1,4 +1,4 @@
-class House {
+export default class House {
     constructor(id, cells, grid) {
         this.id = id      
         this.cells = cells
@@ -50,5 +50,3 @@ class House {
         return links
     }   
 }
-
-module.exports = {House}
