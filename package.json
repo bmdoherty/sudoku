@@ -7,7 +7,7 @@
     "test": "jest --all",
     "build": "webpack",
     "precommit": "lint-staged",
-    "pretty": "prettier --write \"src/**/*.js\""
+    "pretty": "prettier --write"
   },
   "lint-staged": {
     "*.js": [
@@ -16,7 +16,11 @@
       "npm run pretty",
       "npm run build",
       "git add"
-    ]
+    ],
+    ".*rc": [
+      "pretty --parser json",
+      "git add"
+    ]    
   },
   "repository": {
     "type": "git",
