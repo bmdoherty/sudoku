@@ -5,7 +5,11 @@
   "main": ".index.js",
   "scripts": {
     "test": "jest --all",
-    "build": "webpack"
+    "build": "webpack",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "git add"] //"eslint --fix",
   },
   "repository": {
     "type": "git",
@@ -34,3 +38,13 @@
   },
   "dependencies": {}
 }
+
+
+
+"scripts": {
+  +   
+    },
+      "lint-staged": {
+        "*.js": ["eslint --fix", "git add"]
+    }
+  }

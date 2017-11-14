@@ -11,6 +11,12 @@ export default class Cell {
 
         this._digit = digit
 
+
+
+
+ 
+
+
         this.row = `R${this.rowID + 1}`
         this.column = `C${this.columnID + 1}`
         this.square = `S${this.squareID + 1}`
