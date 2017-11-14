@@ -80,5 +80,3 @@ export default function isValid(text) {
 
     return { isValid: false, message: "Grid can not be solved by this tool" };
 }
-
-//module.exports = {isValid}
