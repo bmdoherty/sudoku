@@ -1,18 +1,18 @@
-import House from './House'
+import House from "./House";
 
-export default class Square extends House{
+export default class Square extends House {
     constructor(id, cells, grid) {
         super(id, cells, grid);
-        this.type = 'square'
-        
-        return this
-    }  
+        this.type = "square";
+
+        return this;
+    }
 }
 
 export function isSquare(cells) {
-    if(!cells.length){
-        return false
+    if (!cells.length) {
+        return false;
     }
 
-    return cells.every( (v,i,a) => v.squareID === a[0].squareID)
+    return cells.every((v, i, a) => v.squareID === a[0].squareID);
 }
