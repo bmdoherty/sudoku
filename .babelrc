@@ -1,13 +1,14 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["> 5%"]
-        },
-        "debug": true
-      }
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": ["> 5%"],
+                    "node": "current"
+                },
+                "debug": true
+            }
+        ]
     ]
-  ]
 }
