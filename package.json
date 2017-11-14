@@ -20,6 +20,11 @@
 ".*rc": [
 "pretty --parser json",
 "git add"
+]   
+,
+".*json": [
+"pretty --parser json",
+"git add"
 ]    
 },
 "repository": {
