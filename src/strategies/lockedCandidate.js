@@ -97,7 +97,6 @@ export default class LockedCandidate {
         grid[step.locked.type][step.locked.id].cells
             .filter(v => step.ids.indexOf(v.id) === -1)
             .filter(v => v.possibilities.has(step.digit))
-
             .forEach(v => {
                 v.addToImpossibilities(step.digit);
             });

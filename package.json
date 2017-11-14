@@ -7,14 +7,13 @@
     "test": "jest --all",
     "build": "webpack",
     "precommit": "lint-staged",
-    "pretty": "npm run prettier --write \"src/**/*.js\"",
-    "eslint": "eslint --fix"
+    "pretty": "prettier --write \"src/**/*.js\""
   },
   "lint-staged": {
     "*.js": [
       "npm test",
-      "eslint",
-      "pretty",
+      "eslint --fix",
+      "npm run pretty",
       "npm run build",
       "git add"
     ]
@@ -32,15 +31,15 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.32",
     "@babel/preset-env": "^7.0.0-beta.32",
+    "babel-eslint": "^8.0.2",
     "babel-loader": "^8.0.0-beta.0",
     "babel-preset-env": "^1.6.1",
-    "jest": "^21.2.1",
-    "webpack": "^3.8.1",
-
+    "eslint": "^4.11.0",
     "husky": "^0.14.3",
+    "jest": "^21.2.1",
     "lint-staged": "^5.0.0",
     "prettier": "1.8.2",
-    "eslint": "^4.11.0"
+    "webpack": "^3.8.1"
   },
   "dependencies": {}
 }
