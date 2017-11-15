@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/strategies/hidden.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">src/strategies</a> hidden.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>39/39</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>14/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>14/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>34/34</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-yes">101x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1060x</span>
+<span class="cline-any cline-yes">174796x</span>
+<span class="cline-any cline-yes">1060x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">173736x</span>
+<span class="cline-any cline-yes">86868x</span>
+<span class="cline-any cline-yes">20299x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">86868x</span>
+<span class="cline-any cline-yes">86868x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">173736x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1060x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">3240x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">120x</span>
+<span class="cline-any cline-yes">1060x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1060x</span>
+<span class="cline-any cline-yes">20154x</span>
+<span class="cline-any cline-yes">263083x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20154x</span>
+<span class="cline-any cline-yes">101x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">65x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const canExcludeAPossibilty = (hiddenCellSet, hiddenDigitSet) =&gt; {
+    let cells = hiddenCellSet.filter(cell =&gt; cell.possibilities.size &gt; hiddenDigitSet.length);
+    return !!cells.length;
+};
+&nbsp;
+const combinations = (str, length) =&gt; {
+    const fn = function(rest, length, active = [], out = []) {
+        if (!active.length &amp;&amp; !rest.length) {
+            return;
+        }
+&nbsp;
+        if (!rest.length) {
+            if (active.length === length) {
+                out.push(active);
+            }
+        } else {
+            fn(rest.slice(1), length, active.concat(rest[0]), out);
+            fn(rest.slice(1), length, active, out);
+        }
+&nbsp;
+        return out;
+    };
+&nbsp;
+    return fn(str, length);
+};
+&nbsp;
+export default class Hidden {
+    constructor() {
+        this.type = "Hidden";
+        return this;
+    }
+&nbsp;
+    find(grid) {
+        // need at least 3 for 2 unused cells to find a hidden double
+        for (let size = 2; size &lt;= 4; size++) {
+            let candidateHouses = grid.house.filter(house =&gt; house.unused.size &gt;= size + (size - 1));
+&nbsp;
+            for (let house of candidateHouses) {
+                let possibleSetOfHiddenDigits = combinations([...house.unused], size);
+&nbsp;
+                for (let possibleHiddenDigits of possibleSetOfHiddenDigits) {
+                    let possibleSetOfHiddenCells = house.unusedCells.filter(cell =&gt;
+                        [...cell.possibilities].some(v =&gt; possibleHiddenDigits.indexOf(v) &gt; -1)
+                    );
+&nbsp;
+                    if (possibleSetOfHiddenCells.length === size) {
+                        if (canExcludeAPossibilty(possibleSetOfHiddenCells, possibleHiddenDigits)) {
+                            let id = possibleSetOfHiddenCells.map(v =&gt; v.id);
+                            let digits = possibleHiddenDigits;
+&nbsp;
+                            return {
+                                id: id,
+                                digits: digits,
+                                house: house,
+                                length: size,
+                                strategy: this
+                            };
+                        }
+                    }
+                }
+            }
+        }
+&nbsp;
+        return undefined;
+    }
+&nbsp;
+    apply(grid, step) {
+        step.house.cells.filter(cell =&gt; step.id.indexOf(cell.id) &gt; -1).forEach(cell =&gt; {
+            let impossible = [...cell.possibilities].filter(p =&gt; {
+                return step.digits.indexOf(p) === -1;
+            });
+            cell.impossibilities = cell.impossibilities.concat(...impossible);
+        });
+&nbsp;
+        return true;
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 15 2017 14:07:44 GMT+0000 (GMT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

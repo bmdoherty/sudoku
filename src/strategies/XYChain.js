@@ -16,22 +16,19 @@ const makeChainLink = (grid, node, cells, size, chain = [], visited = [], out = 
 
     let nextLink = (house, node) => {
         let links = house.links[node.mustBe].filter(v => visited.indexOf(v.id) === -1).filter(v => v.id !== cell.id);
+        let linkCell = grid.cells[links[0].id];
+        let mustBe = [...linkCell.possibilities.values()].filter(v => v !== node.mustBe)[0];
+        let cannotBe = [...linkCell.possibilities.values()].filter(v => v !== mustBe)[0];
 
-        if (links.length) {
-            let linkCell = grid.cells[links[0].id];
-            let mustBe = [...linkCell.possibilities.values()].filter(v => v !== node.mustBe)[0];
-            let cannotBe = [...linkCell.possibilities.values()].filter(v => v !== mustBe)[0];
-
-            makeChainLink(
-                grid,
-                { cell: linkCell, mustBe: mustBe, cannotBe: cannotBe },
-                cells.filter(v => v.id !== cell.id),
-                size,
-                chain.slice(0),
-                visited,
-                out
-            );
-        }
+        makeChainLink(
+            grid,
+            { cell: linkCell, mustBe: mustBe, cannotBe: cannotBe },
+            cells.filter(v => v.id !== cell.id),
+            size,
+            chain.slice(0),
+            visited,
+            out
+        );
     };
 
     let cell = node.cell;
@@ -104,7 +101,7 @@ export default class XYChain {
     apply(grid, step) {
         let start = step.chain[0][0];
         let end = step.chain[0][step.chain.length - 1];
-        //console.log(start)
+
         let excluded = [...start.cell.canSee]
             .filter(v => end.cell.canSee.has(v))
             .filter(v => v.possibilities.has(start.cannotBe))

@@ -72,33 +72,31 @@ export default class Fish {
                     .map(linkToColumns(digit))
                     .filter(v => v.columnIDs.length >= 2);
 
-                if (rowsAndThierColumns.length) {
-                    // 2 == XY-Wing
-                    // 3 == swordfish
-                    // 4 == jellyfish
-                    for (let size = 2; size <= 4; size++) {
-                        let rowIDs = rowsAndThierColumns.map(row => row.rowID);
+                // 2 == XY-Wing
+                // 3 == swordfish
+                // 4 == jellyfish
+                for (let size = 2; size <= 4; size++) {
+                    let rowIDs = rowsAndThierColumns.map(row => row.rowID);
 
-                        // all possible rowID combinations (where row contains digit) of required size
-                        let possibleSetOfFishRowCombinations = combinations(rowIDs, size);
+                    // all possible rowID combinations (where row contains digit) of required size
+                    let possibleSetOfFishRowCombinations = combinations(rowIDs, size);
 
-                        for (let possibleFishRows of possibleSetOfFishRowCombinations) {
-                            let fishColumns = extractUniqueFishColumns(possibleFishRows, rowsAndThierColumns);
+                    for (let possibleFishRows of possibleSetOfFishRowCombinations) {
+                        let fishColumns = extractUniqueFishColumns(possibleFishRows, rowsAndThierColumns);
 
-                            // fishColumns and possibleSetOfFishRows are both equal to size required, so we have a fish
-                            if (fishColumns.length === size) {
-                                let fishRows = possibleFishRows;
+                        // fishColumns and possibleSetOfFishRows are both equal to size required, so we have a fish
+                        if (fishColumns.length === size) {
+                            let fishRows = possibleFishRows;
 
-                                // dont return unless it progresses grid solving
-                                if (canExcludeCellsBasedOnFish(grid, digit, fishRows, fishColumns)) {
-                                    return {
-                                        digit: digit,
-                                        rows: fishRows,
-                                        columns: fishColumns,
-                                        length: fishRows.length,
-                                        strategy: this
-                                    };
-                                }
+                            // dont return unless it progresses grid solving
+                            if (canExcludeCellsBasedOnFish(grid, digit, fishRows, fishColumns)) {
+                                return {
+                                    digit: digit,
+                                    rows: fishRows,
+                                    columns: fishColumns,
+                                    length: fishRows.length,
+                                    strategy: this
+                                };
                             }
                         }
                     }

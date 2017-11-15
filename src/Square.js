@@ -10,9 +10,5 @@ export default class Square extends House {
 }
 
 export function isSquare(cells) {
-    if (!cells.length) {
-        return false;
-    }
-
     return cells.every((v, i, a) => v.squareID === a[0].squareID);
 }

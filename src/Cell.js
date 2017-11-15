@@ -40,12 +40,6 @@ export default class Cell {
         this._digit = digit;
     }
 
-    // get excluded() {
-    //     return [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    //         //.filter(v => [...this.impossibilities].indexOf(v) > -1)
-    //         .filter(v => [...this.possibilities].indexOf(v) === -1);
-    // }
-
     get possibilities() {
         return this.getPossibilities();
     }

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/Cell.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">src</a> Cell.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>53/53</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>20/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>44/44</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1053x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21306111x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3996x</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-yes">3996x</span>
+<span class="cline-any cline-yes">3552x</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-yes">3996x</span>
+<span class="cline-any cline-yes">3552x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">959985x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">959985x</span>
+<span class="cline-any cline-yes">356264x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">603721x</span>
+<span class="cline-any cline-yes">603721x</span>
+<span class="cline-any cline-yes">443220x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5433489x</span>
+<span class="cline-any cline-yes">5433489x</span>
+<span class="cline-any cline-yes">5433489x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">603721x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4990370x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12051x</span>
+<span class="cline-any cline-yes">12051x</span>
+<span class="cline-any cline-yes">12051x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12051x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default class Cell {
+    constructor(grid, row, column, digit, locked) {
+        this.id = row * 9 + column;
+        this.grid = grid;
+        this.rowID = row;
+        this.columnID = column;
+        this.locked = locked;
+        this.squareID = Math.floor(row / 3) * 3 + Math.floor(column / 3);
+        this.impossibilities = [];
+        this._digit = digit;
+        this.row = `R${this.rowID + 1}`;
+        this.column = `C${this.columnID + 1}`;
+        this.square = `S${this.squareID + 1}`;
+&nbsp;
+        return this;
+    }
+&nbsp;
+    get digit() {
+        return this._digit;
+    }
+&nbsp;
+    set digit(digit) {
+        this.grid.row[this.rowID].used.add(digit);
+        this.grid.row[this.rowID].unused.delete(digit);
+&nbsp;
+        this.grid.column[this.columnID].used.add(digit);
+        this.grid.column[this.columnID].unused.delete(digit);
+&nbsp;
+        this.grid.square[this.squareID].used.add(digit);
+        this.grid.square[this.squareID].unused.delete(digit);
+&nbsp;
+        this.grid.row[this.rowID].cells.filter(v =&gt; v.id !== this.id).forEach(v =&gt; v.impossibilities.concat(digit));
+        this.grid.column[this.columnID].cells
+            .filter(v =&gt; v.id !== this.id)
+            .forEach(v =&gt; v.impossibilities.concat(digit));
+        this.grid.square[this.squareID].cells
+            .filter(v =&gt; v.id !== this.id)
+            .forEach(v =&gt; v.impossibilities.concat(digit));
+&nbsp;
+        this._digit = digit;
+    }
+&nbsp;
+    get possibilities() {
+        return this.getPossibilities();
+    }
+&nbsp;
+    getPossibilities() {
+        if (this.digit) {
+            return new Set();
+        }
+&nbsp;
+        let possibles = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        for (let i = 0; i &lt; this.impossibilities.length; i++) {
+            possibles.delete(this.impossibilities[i]);
+        }
+        let s = this.grid.square[this.squareID].cells.map(v =&gt; v.digit).filter(v =&gt; v !== 0);
+        let r = this.grid.row[this.rowID].cells.map(v =&gt; v.digit).filter(v =&gt; v !== 0);
+        let c = this.grid.column[this.columnID].cells.map(v =&gt; v.digit).filter(v =&gt; v !== 0);
+&nbsp;
+        let used = new Set(r.concat(c).concat(s));
+&nbsp;
+        return new Set([...possibles].filter(v =&gt; !used.has(v)));
+    }
+&nbsp;
+    get canSee() {
+        let s = this.grid.square[this.squareID].cells;
+        let r = this.grid.row[this.rowID].cells;
+        let c = this.grid.column[this.columnID].cells;
+&nbsp;
+        return new Set(r.concat(c).concat(s));
+    }
+&nbsp;
+    addToImpossibilities(digit) {
+        this.impossibilities.push(digit);
+&nbsp;
+        return this.impossibilities;
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 15 2017 14:07:44 GMT+0000 (GMT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

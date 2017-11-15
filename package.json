@@ -4,7 +4,7 @@
 	"description": "sudoku",
 	"main": "./dist/sudoku.min.js",
 	"scripts": {
-		"test": "jest -o",
+		"test": "jest --all --coverage ",
 		"build": "webpack",
 		"precommit": "lint-staged",
 		"pretty": "prettier --write"

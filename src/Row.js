@@ -10,9 +10,5 @@ export default class Row extends House {
 }
 
 export function isRow(cells) {
-    if (!cells.length) {
-        return false;
-    }
-
     return cells.every((v, i, a) => v.rowID === a[0].rowID);
 }

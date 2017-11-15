@@ -2,10 +2,6 @@ import { isSquare } from "../Square";
 import { isRow } from "../Row";
 import { isColumn } from "../Column";
 
-const cellIsNotInArray = (cell, array) => {
-    return array.indexOf(cell.id) === -1;
-};
-
 export default class LockedCandidate {
     constructor() {
         this.type = "LockedCandidate";
@@ -84,8 +80,6 @@ export default class LockedCandidate {
                         }
                     }
 
-                    break;
-                default:
                     break;
             }
         }
