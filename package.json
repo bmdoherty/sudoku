@@ -15,7 +15,7 @@
 			"eslint --fix",
 			"npm run pretty",
 			"npm run build",
-			"git add"
+			"git add -A"
 		],
 		".*rc": [
 			"pretty --parser json",
