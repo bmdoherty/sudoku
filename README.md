@@ -13,3 +13,6 @@ engine + react [on github pages](https://bmdoherty.github.io/sudoku-react/)
 
 ### Dependencies
 babel + jest
+
+### Coverage Report
+[artifacts on github pages](https://bmdoherty.github.io/sudoku/)
