@@ -11,11 +11,9 @@
 	},
 	"lint-staged": {
 		"*.js": [
-			"npm test",
 			"eslint --fix",
 			"npm run pretty",
-			"npm run build",
-			"git add -A"
+			"git add "
 		],
 		".*rc": [
 			"pretty --parser json",
