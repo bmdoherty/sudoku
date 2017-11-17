@@ -12,15 +12,15 @@ it("Naked Double", () => {
     let text = "400270600798156234020840007237468951849531726561792843082015479070024300004087002";
     let solver = new Solver(text).solve();
 
-    //expect(solver.isSolved()).toEqual(true);
-    expect(solver.firstRow()).toEqual([4, 1, 3, 2, 7, 9, 6, 8, 5]);
+    expect(solver.isSolved()).toEqual(true);
+    expect(solver.firstRow()).toEqual([4, 1, 5, 2, 7, 3, 6, 9, 8]);
 });
 
 it("Naked Triple, LockedCandidate, jellyfish, XYWing", () => {
     let text = "600802735702356940300407062100975024200183079079624003400560207067240300920738406";
     let solver = new Solver(text).solve();
 
-    //expect(solver.isSolved()).toEqual(true);
+    expect(solver.isSolved()).toEqual(true);
     expect(solver.firstRow()).toEqual([6, 9, 4, 8, 1, 2, 7, 3, 5]);
 });
 
@@ -36,7 +36,7 @@ it("Hidden double", () => {
     let text = "049132000081479000327685914096051800075028000038046005853267000712894563964513000";
     let solver = new Solver(text).solve();
 
-    // expect(solver.isSolved()).toEqual(true);
+    expect(solver.isSolved()).toEqual(true);
     expect(solver.firstRow()).toEqual([6, 4, 9, 1, 3, 2, 7, 5, 8]);
 });
 
@@ -68,7 +68,7 @@ it("Hidden double, swordfish & XY Wing", () => {
     let text = "195367248078050369306098157003780590709005006584906710832549671907013025051072900";
     let solver = new Solver(text).solve();
 
-    //expect(solver.isSolved()).toEqual(true);
+    expect(solver.isSolved()).toEqual(true);
     expect(solver.firstRow()).toEqual([1, 9, 5, 3, 6, 7, 2, 4, 8]);
 });
 
@@ -79,7 +79,7 @@ it("Hidden double, LockedCandidate, jellyfish", () => {
     expect(solver.firstRow()).toEqual([2, 9, 4, 1, 6, 3, 5, 8, 7]);
 });
 
-it.skip("jellyfish", () => {
+it("jellyfish", () => {
     let text = "200000003080030050003402100001205400000090000009308600002506900090020070400000001";
     let solver = new Solver(text).solve();
 
@@ -87,7 +87,7 @@ it.skip("jellyfish", () => {
     expect(solver.firstRow()).toEqual([2, 5, 6, 8, 1, 9, 7, 4, 3]);
 });
 
-it.skip("euler 6: lockedCandidate, hidden triple, hidden Double & XWing", () => {
+it("euler 6: lockedCandidate, hidden triple, hidden Double & XWing", () => {
     let text = "043080250600000000000001094900004070000608000010200003820500000000000005034090710";
     let solver = new Solver(text).solve();
 
@@ -95,15 +95,15 @@ it.skip("euler 6: lockedCandidate, hidden triple, hidden Double & XWing", () => 
     expect(solver.firstRow()).toEqual([1, 4, 3, 9, 8, 6, 2, 5, 7]);
 });
 
-it.skip("long running failure (unsolved): ", () => {
+it("long running failure (unsolved): ", () => {
     let text = "024000000000007100090000000000000084000075000600030000000400029000200300100000000";
     let solver = new Solver(text).solve();
 
-    expect(solver.isSolved()).toEqual(true);
+    expect(solver.isSolved()).toEqual(false);
     expect(solver.firstRow()).toEqual([0, 2, 4, 0, 0, 0, 9, 0, 0]); // un solved
 });
 
-it.skip("HiddenSingle, NakedSingle - Guardian hard Oct 12", () => {
+it("HiddenSingle, NakedSingle - Guardian hard Oct 12", () => {
     let text = "000000003089000060060078000000030006004500290006000014000020001070085000500403800";
     let solver = new Solver(text).solve();
 

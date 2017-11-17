@@ -18,22 +18,20 @@ export default class LockedCandidate {
                     for (let digit of house.unused) {
                         let possibleCells = house.cells.filter(v => v.possibilities.has(digit));
 
-                        if (possibleCells.length > 1) {
-                            if (isSquare(possibleCells)) {
-                                let squareID = possibleCells[0].squareID;
-                                let total = grid.square[squareID].cells.filter(v => v.possibilities.has(digit));
+                        if (isSquare(possibleCells)) {
+                            let squareID = possibleCells[0].squareID;
+                            let total = grid.square[squareID].cells.filter(v => v.possibilities.has(digit));
 
-                                if (possibleCells.length < total.length) {
-                                    let locked = grid.square[squareID];
-                                    let ids = possibleCells.map(v => v.id);
-                                    return {
-                                        ids: ids,
-                                        digit: digit,
-                                        house: house,
-                                        locked: locked,
-                                        strategy: this
-                                    };
-                                }
+                            if (possibleCells.length < total.length) {
+                                let locked = grid.square[squareID];
+                                let ids = possibleCells.map(v => v.id);
+                                return {
+                                    ids: ids,
+                                    digit: digit,
+                                    house: house,
+                                    locked: locked,
+                                    strategy: this
+                                };
                             }
                         }
                     }
@@ -43,39 +41,37 @@ export default class LockedCandidate {
                     for (let digit of house.unused) {
                         let possibleCells = house.cells.filter(v => v.possibilities.has(digit));
 
-                        if (possibleCells.length > 1) {
-                            if (isRow(possibleCells)) {
-                                let rowID = possibleCells[0].rowID;
-                                let total = grid.row[rowID].cells.filter(v => v.possibilities.has(digit));
+                        if (isRow(possibleCells)) {
+                            let rowID = possibleCells[0].rowID;
+                            let total = grid.row[rowID].cells.filter(v => v.possibilities.has(digit));
 
-                                if (possibleCells.length < total.length) {
-                                    let locked = grid.row[rowID];
-                                    let ids = possibleCells.map(v => v.id);
-                                    return {
-                                        ids: ids,
-                                        digit: digit,
-                                        house: house,
-                                        locked: locked,
-                                        strategy: this
-                                    };
-                                }
+                            if (possibleCells.length < total.length) {
+                                let locked = grid.row[rowID];
+                                let ids = possibleCells.map(v => v.id);
+                                return {
+                                    ids: ids,
+                                    digit: digit,
+                                    house: house,
+                                    locked: locked,
+                                    strategy: this
+                                };
                             }
+                        }
 
-                            if (isColumn(possibleCells)) {
-                                let columnID = possibleCells[0].columnID;
-                                let total = grid.column[columnID].cells.filter(v => v.possibilities.has(digit));
+                        if (isColumn(possibleCells)) {
+                            let columnID = possibleCells[0].columnID;
+                            let total = grid.column[columnID].cells.filter(v => v.possibilities.has(digit));
 
-                                if (possibleCells.length < total.length) {
-                                    let locked = grid.column[columnID];
-                                    let ids = possibleCells.map(v => v.id);
-                                    return {
-                                        ids: ids,
-                                        digit: digit,
-                                        house: house,
-                                        locked: locked,
-                                        strategy: this
-                                    };
-                                }
+                            if (possibleCells.length < total.length) {
+                                let locked = grid.column[columnID];
+                                let ids = possibleCells.map(v => v.id);
+                                return {
+                                    ids: ids,
+                                    digit: digit,
+                                    house: house,
+                                    locked: locked,
+                                    strategy: this
+                                };
                             }
                         }
                     }

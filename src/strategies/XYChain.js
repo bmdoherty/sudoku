@@ -85,7 +85,7 @@ export default class XYChain {
 
                     if (chain && chain.length && chain[0].length) {
                         return {
-                            chain: chain,
+                            chain: [].concat(...chain),
                             type: "XYChain",
                             length: chain.length,
                             strategy: this
@@ -99,8 +99,8 @@ export default class XYChain {
     }
 
     apply(grid, step) {
-        let start = step.chain[0][0];
-        let end = step.chain[0][step.chain.length - 1];
+        let start = step.chain[0];
+        let end = step.chain[step.chain.length - 1];
 
         let excluded = [...start.cell.canSee]
             .filter(v => end.cell.canSee.has(v))
