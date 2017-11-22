@@ -87,10 +87,11 @@ export default class XYChain {
                     let chain = makeChainLink(grid, node, bivalueCells.map(v => v.id), size);
 
                     if (chain && chain.length && chain[0].length) {
+                        let steps = [].concat(...chain);
                         return {
-                            chain: [].concat(...chain),
+                            chain: steps,
                             type: "XYChain",
-                            length: chain.length,
+                            length: steps.length,
                             strategy: this
                         };
                     }
