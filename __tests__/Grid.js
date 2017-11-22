@@ -110,3 +110,11 @@ it("HiddenSingle, NakedSingle - Guardian hard Oct 12", () => {
     expect(solver.isSolved()).toEqual(true);
     expect(solver.firstRow()).toEqual([4, 2, 7, 6, 5, 1, 9, 8, 3]);
 });
+
+it("XY Chain", () => {
+    let text = "361749528584000790792000004923574080416000357857631249678000412145287900239416875";
+    let solver = new Solver(text).solve();
+
+    expect(solver.isSolved()).toEqual(true);
+    expect(solver.firstRow()).toEqual([3, 6, 1, 7, 4, 9, 5, 2, 8]);
+});

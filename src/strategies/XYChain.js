@@ -16,19 +16,22 @@ const makeChainLink = (grid, node, cells, size, chain = [], visited = [], out = 
 
     let nextLink = (house, node) => {
         let links = house.links[node.mustBe].filter(v => visited.indexOf(v.id) === -1).filter(v => v.id !== cell.id);
-        let linkCell = grid.cells[links[0].id];
-        let mustBe = [...linkCell.possibilities.values()].filter(v => v !== node.mustBe)[0];
-        let cannotBe = [...linkCell.possibilities.values()].filter(v => v !== mustBe)[0];
 
-        makeChainLink(
-            grid,
-            { cell: linkCell, mustBe: mustBe, cannotBe: cannotBe },
-            cells.filter(v => v.id !== cell.id),
-            size,
-            chain.slice(0),
-            visited,
-            out
-        );
+        if (links.length) {
+            let linkCell = grid.cells[links[0].id];
+            let mustBe = [...linkCell.possibilities.values()].filter(v => v !== node.mustBe)[0];
+            let cannotBe = [...linkCell.possibilities.values()].filter(v => v !== mustBe)[0];
+
+            makeChainLink(
+                grid,
+                { cell: linkCell, mustBe: mustBe, cannotBe: cannotBe },
+                cells.filter(v => v.id !== cell.id),
+                size,
+                chain.slice(0),
+                visited,
+                out
+            );
+        }
     };
 
     let cell = node.cell;
