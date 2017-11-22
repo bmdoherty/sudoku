@@ -72,7 +72,7 @@ export default class XYChain {
     find(grid) {
         let candidateHouses = grid.house.filter(house => house.unused.size > 0);
 
-        for (let size = 3; size < 10; size++) {
+        for (let size = 3; size < 15; size++) {
             for (let digit = 1; digit <= 9; digit++) {
                 let bivalueCells = grid.cells.filter(v => v.possibilities.size === 2);
                 let startCells = bivalueCells.filter(v => v.possibilities.has(digit));
