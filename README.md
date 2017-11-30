@@ -14,6 +14,8 @@ npm run build
 ### Demo
 engine + react [on github pages](https://bmdoherty.github.io/sudoku-react/)
 
+[Guardian hard Nov 30](https://bmdoherty.github.io/sudoku-react/#040008000000000462500609370407000000090000020000000107082306004739000000000700030)
+
 [Guardian medium Nov 29](https://bmdoherty.github.io/sudoku-react/#700800400300270001009063000002700069000000000190006200000510300600087004001009005)
 
 [HiddenSingle, NakedSingle - Guardian hard Oct 13](https://bmdoherty.github.io/sudoku-react/#000000000007020400008504900009000800510080027000203000000000000435000196180000054)
