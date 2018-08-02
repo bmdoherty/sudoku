@@ -9,6 +9,10 @@
 		"precommit": "lint-staged",
 		"pretty": "prettier --write"
 	},
+	"jest": {
+		"verbose": true,
+		"testURL": "http://localhost/"
+	},
 	"lint-staged": {
 		"*.js": [
 			"eslint --fix",
