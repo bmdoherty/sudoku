@@ -39,18 +39,19 @@
 	},
 	"homepage": "https://github.com/bmdoherty/sudoku#readme",
 	"devDependencies": {
-		"@babel/core": "^7.1.2",
-		"@babel/preset-env": "^7.1.0",
+		"@babel/core": "^7.2.2",
+		"@babel/preset-env": "^7.2.3",
 		"babel-eslint": "^10.0.1",
 		"babel-loader": "^8.0.4",
 		"babel-preset-env": "^1.7.0",
-		"eslint": "^5.8.0",
-		"husky": "^1.1.2",
+		"eslint": "^5.11.1",
+		"husky": "^1.3.1",
 		"jest": "^23.6.0",
-		"lint-staged": "^8.0.4",
-		"prettier": "^1.14.3",
-		"webpack": "^4.23.1",
-		"webpack-cli": "^3.1.2"
+		"lint-staged": "^8.1.0",
+		"prettier": "^1.15.3",
+		"webpack": "^4.28.2",
+		"webpack-cli": "^3.1.2",
+		"classnames": "^2.2.6"
 	},
 	"dependencies": {}
 }
